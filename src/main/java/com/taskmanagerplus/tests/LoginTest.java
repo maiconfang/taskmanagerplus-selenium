@@ -90,10 +90,10 @@ public class LoginTest extends BaseTest {
         // Explicit wait to ensure the URL has changed to the expected one
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         ExtentReportManager.getTest().log(Status.INFO, "Waiting for URL to change to the application page");
-        wait.until(ExpectedConditions.urlToBe(ConfigReader.getProperty("urlApplication")));
+        wait.until(ExpectedConditions.urlToBe(ConfigReader.getProperty("urlApplicationHome")));
 
         // Getting the expected URL from the config file
-        String expectedUrl = ConfigReader.getProperty("urlPublicHome");
+        String expectedUrl = ConfigReader.getProperty("urlApplicationHome");
         String actualUrl = driver.getCurrentUrl();
 
         ExtentReportManager.getTest().log(Status.INFO, "Verifying the login was successful");

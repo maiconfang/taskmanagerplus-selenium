@@ -35,6 +35,9 @@ build/
 # Ignore generated test reports
 test-output/
 
+# Ignore test-output files and directories
+test-output*
+
 # Ignore reports from specific tools
 emailable-report.html
 ExtentReport.html
@@ -48,3 +51,5 @@ config.properties
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+
+

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Page object class for the task search page in the Task Manager Plus application.
@@ -117,5 +118,22 @@ public class TaskSearchPage {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+    
+    /**
+     * Waits for the specified task to be present in the search results.
+     * 
+     * @param taskTitle the title of the task
+     * @param wait the WebDriverWait instance to use for waiting
+     * @return the WebElement of the task row
+     */
+    public WebElement waitForTaskRow(String taskTitle, WebDriverWait wait) {
+        return wait.until(driver -> {
+            try {
+                return getTaskRow(taskTitle);
+            } catch (NoSuchElementException e) {
+                return null;
+            }
+        });
     }
 }

@@ -1,8 +1,9 @@
 package com.taskmanagerplus.tests;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -29,15 +30,18 @@ public class TaskSearchTest extends BaseTest {
 
     @BeforeClass
     public void setUpClass() {
-    	
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
-        System.out.println("ExcelUtils initialized with file: testdata/LoginCredentials.xlsx");
-    	
+    }
+
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+        
         // Read credentials from Excel file
         String username = excelUtils.getCellDataByColumnName("LoginCredentials", 1, "Username");
         String password = excelUtils.getCellDataByColumnName("LoginCredentials", 1, "Password");
-    	
+
         // Perform login before navigating to the Task Search Page
         performLogin(username, password);
         taskSearchPage = navigateToTaskPage();
@@ -52,8 +56,8 @@ public class TaskSearchTest extends BaseTest {
         taskSearchPage.clickSearchButton();
 
         // Add assertions to verify the search results
-        wait.until(ExpectedConditions.visibilityOf(taskSearchPage.getTaskRow("Task 1")));
-        Assert.assertTrue(taskSearchPage.isTaskPresent("Task 1"), "Task 1 should be present in the search results.");
+        WebElement taskRow = taskSearchPage.waitForTaskRow("Task 1", wait);
+        Assert.assertNotNull(taskRow, "Task 1 should be present in the search results.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task search test passed");
     }

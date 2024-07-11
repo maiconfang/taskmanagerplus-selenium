@@ -79,19 +79,19 @@ public class BaseTest {
      * Helper method to perform login
      */
     public void performLogin(String username, String password) {
-        driver.get(ConfigReader.getProperty("urlPublicHome"));
+        driver.get(ConfigReader.getProperty("urlPublicLogin"));
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterLogin(username);
         loginPage.enterPassword(password);
         loginPage.clickLoginButton();
-        wait.until(ExpectedConditions.urlToBe(ConfigReader.getProperty("urlApplication")));
+        wait.until(ExpectedConditions.urlToBe(ConfigReader.getProperty("urlApplicationHome")));
     }
 
     /**
      * Helper method to navigate to the task page after login
      */
     public TaskSearchPage navigateToTaskPage() {
-        driver.get("http://localhost:4200/#/app/task");
+    	driver.get(ConfigReader.getProperty("urlApplicationTask"));
         return new TaskSearchPage(driver);
     }
     
