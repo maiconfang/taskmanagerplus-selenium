@@ -1,0 +1,50 @@
+# Ignore Eclipse project files
+.metadata/
+.classpath
+.project
+.settings/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore IntelliJ IDEA project files
+.idea/
+*.iml
+
+# Ignore build output directories
+target/
+build/
+
+# Ignore Maven wrapper files
+.mvn/
+!**/mvnw
+!**/mvnw.cmd
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Ignore compiled Java classes
+*.class
+
+# Ignore generated test reports
+test-output/
+
+# Ignore reports from specific tools
+emailable-report.html
+ExtentReport.html
+
+# Ignore JUnit reports
+junitreports/
+
+# Ignore specific configuration files
+config.properties
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
