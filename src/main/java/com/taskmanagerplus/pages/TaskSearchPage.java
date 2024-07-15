@@ -1,5 +1,7 @@
 package com.taskmanagerplus.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -46,7 +48,26 @@ public class TaskSearchPage {
     @FindBy(id = "task-search-btn-create-record") // ID of the create new task button
     WebElement createTaskButton;
 
-    // Add locators for other fields like due date, completed checkbox, and grid elements
+    @FindBy(css = "input[formControlName='dueDate']") // CSS selector for the due date input field
+    WebElement dueDateInput;
+
+    @FindBy(id = "task-search-completed") // ID of the completed checkbox
+    WebElement completedCheckbox;
+
+    @FindBy(id = "task-search-not-completed") // ID of the not completed checkbox
+    WebElement notCompletedCheckbox;
+
+    @FindBy(id = "task-search-no-content-message") // ID of the no content message
+    WebElement noContentMessage;
+
+    @FindBy(id = "pagination-previous-active") // ID of the active previous page link
+    WebElement paginationPrevious;
+
+    @FindBy(id = "pagination-next-active") // ID of the active next page link
+    WebElement paginationNext;
+
+    @FindBy(xpath = "//tbody/tr[not(@id='task-search-no-content')][1]") // XPath selector for the first task row on the current page
+    WebElement firstTaskRow;
 
     /**
      * Constructor to initialize the WebDriver and page elements.
@@ -93,8 +114,6 @@ public class TaskSearchPage {
         createTaskButton.click();
     }
 
-    // Add methods to interact with other elements like due date, completed checkbox, and grid actions
-    
     /**
      * Gets the WebElement of the row corresponding to the specified task title.
      * 
@@ -119,7 +138,7 @@ public class TaskSearchPage {
             return false;
         }
     }
-    
+
     /**
      * Waits for the specified task to be present in the search results.
      * 
@@ -135,5 +154,143 @@ public class TaskSearchPage {
                 return null;
             }
         });
+    }
+
+    /**
+     * Gets the title of the task from the specified row.
+     * 
+     * @param taskRow the WebElement of the task row
+     * @return the task title
+     */
+    public String getTaskTitle(WebElement taskRow) {
+        return taskRow.findElement(By.id("task-search-column-task-title")).getText();
+    }
+
+    /**
+     * Gets the description of the task from the specified row.
+     * 
+     * @param taskRow the WebElement of the task row
+     * @return the task description
+     */
+    public String getTaskDescription(WebElement taskRow) {
+        return taskRow.findElement(By.id("task-search-column-task-description")).getText();
+    }
+
+    /**
+     * Gets the due date of the task from the specified row.
+     * 
+     * @param taskRow the WebElement of the task row
+     * @return the task due date
+     */
+    public String getTaskDueDate(WebElement taskRow) {
+        return taskRow.findElement(By.id("task-search-column-task-duedate")).getText();
+    }
+
+    /**
+     * Gets the completed status of the task from the specified row.
+     * 
+     * @param taskRow the WebElement of the task row
+     * @return the task completed status
+     */
+    public String getTaskCompletedStatus(WebElement taskRow) {
+        return taskRow.findElement(By.id("task-search-column-task-completed")).getText();
+    }
+
+    /**
+     * Checks if the edit button is present in the specified task row.
+     * 
+     * @param taskRow the WebElement of the task row
+     * @return true if the edit button is present, false otherwise
+     */
+    public boolean hasEditButton(WebElement taskRow) {
+        try {
+            taskRow.findElement(By.id("task-search-action-update-task"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if the delete button is present in the specified task row.
+     * 
+     * @param taskRow the WebElement of the task row
+     * @return true if the delete button is present, false otherwise
+     */
+    public boolean hasDeleteButton(WebElement taskRow) {
+        try {
+            taskRow.findElement(By.id("task-search-action-remove-task"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Enters the specified due date in the due date input field.
+     * 
+     * @param dueDate the due date to be entered
+     */
+    public void enterDueDate(String dueDate) {
+        dueDateInput.sendKeys(dueDate);
+    }
+
+    /**
+     * Selects the completed checkbox.
+     */
+    public void selectCompletedCheckbox() {
+        if (!completedCheckbox.isSelected()) {
+            completedCheckbox.click();
+        }
+    }
+
+    /**
+     * Selects the not completed checkbox.
+     */
+    public void selectNotCompletedCheckbox() {
+        if (!notCompletedCheckbox.isSelected()) {
+            notCompletedCheckbox.click();
+        }
+    }
+
+    /**
+     * Gets a list of completed task rows.
+     * 
+     * @return a list of WebElement objects representing the completed tasks
+     */
+    public List<WebElement> getCompletedTasks() {
+        return driver.findElements(By.xpath("//td[@id='task-search-column-task-completed' and text()='Yes']/parent::tr"));
+    }
+
+    /**
+     * Gets the error message displayed when no results are found.
+     * 
+     * @return the WebElement of the error message
+     */
+    public WebElement getErrorMessage() {
+        return noContentMessage;
+    }
+
+    /**
+     * Clicks the previous page button in the pagination.
+     */
+    public void clickPaginationPrevious() {
+        paginationPrevious.click();
+    }
+
+    /**
+     * Clicks the next page button in the pagination.
+     */
+    public void clickPaginationNext() {
+        paginationNext.click();
+    }
+
+    /**
+     * Gets the first task on the current page.
+     * 
+     * @return the WebElement of the first task row on the current page
+     */
+    public WebElement getFirstTaskOnCurrentPage() {
+        return driver.findElement(By.xpath("//tbody/tr[not(contains(@class,'no-content-message'))][1]"));
     }
 }

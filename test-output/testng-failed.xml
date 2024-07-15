@@ -7,7 +7,7 @@
         <methods>
           <include name="tearDown"/>
           <include name="setUpClass"/>
-          <include name="testSearchTask"/>
+          <include name="pagination_shouldWorkCorrectly"/>
           <include name="beforeSuite"/>
           <include name="setUp"/>
         </methods>

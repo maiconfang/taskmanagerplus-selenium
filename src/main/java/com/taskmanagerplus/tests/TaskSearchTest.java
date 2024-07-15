@@ -1,15 +1,23 @@
 package com.taskmanagerplus.tests;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
+import com.taskmanagerplus.config.JdbcTemplateSingleton;
 import com.taskmanagerplus.pages.TaskSearchPage;
 import com.taskmanagerplus.reports.ExtentReportManager;
 import com.taskmanagerplus.utils.ExcelUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Test class for the task search functionality in the Task Manager Plus application.
  * 
@@ -24,14 +32,18 @@ import com.taskmanagerplus.utils.ExcelUtils;
 
 public class TaskSearchTest extends BaseTest {
 
-	private ExcelUtils excelUtils;
-	
+    private ExcelUtils excelUtils;
     private TaskSearchPage taskSearchPage;
+    private JdbcTemplate jdbcTemplate;
+    private static final Logger logger = LoggerFactory.getLogger(TaskSearchTest.class);
 
     @BeforeClass
     public void setUpClass() {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
+        
+        // Get the singleton instance of JdbcTemplate
+        jdbcTemplate = JdbcTemplateSingleton.getInstance();
     }
 
     @BeforeMethod
@@ -46,34 +58,371 @@ public class TaskSearchTest extends BaseTest {
         performLogin(username, password);
         taskSearchPage = navigateToTaskPage();
         ExtentReportManager.getTest().log(Status.INFO, "Navigated to Task Search Page");
+        logger.info("Performed login and navigated to Task Search Page");
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        cleanupTestData();
+        logger.info("Test data cleaned up and browser closed");
     }
 
     @Test
-    public void testSearchTask() {
-        ExtentReportManager.getTest().log(Status.INFO, "Starting test: testSearchTask");
-        taskSearchPage.enterTitle("Task 1");
-        taskSearchPage.enterDescription("Description for Task 1");
+    public void testInsertTestData() {
+        insertTestData();
+        // Add assertions to verify the data insertion
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM task WHERE title LIKE 'Test Task%'", Integer.class);
+        Assert.assertEquals(count, 2, "Two test tasks should be inserted.");
+        logger.info("Test data insertion verified");
+    }
+    
+    private void cleanupTestData() {
+        JdbcTemplateSingleton.cleanupTestDataTask("Test Task");
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    private void insertTestData() {
+        JdbcTemplateSingleton.insertTaskData("Test Task A", "Test Description A", "2024-07-15", false);
+        JdbcTemplateSingleton.insertTaskData("Test Task B", "Test Description B", "2024-07-16", true);
+        JdbcTemplateSingleton.insertTaskData("Test Task C", "Test Description C", "2023-12-31", true);
+        JdbcTemplateSingleton.insertTaskData("Test Task D", "Test Description D", "2024-01-01", false);
+        JdbcTemplateSingleton.insertTaskData("Test Task E", "Test Description E", "2024-01-15", true);
+        JdbcTemplateSingleton.insertTaskData("Test Task F", "Test Description F", "2024-02-01", false);
+        JdbcTemplateSingleton.insertTaskData("Test Task G", "Test Description G", "2024-02-15", true);
+        JdbcTemplateSingleton.insertTaskData("Test Task H", "Test Description H", "2024-03-01", false);
+        JdbcTemplateSingleton.insertTaskData("Test Task I", "Test Description I", "2024-03-15", true);
+        JdbcTemplateSingleton.insertTaskData("Test Task J", "Test Description J", "2024-04-01", false);
+        JdbcTemplateSingleton.insertTaskData("Test Task K", "Test Description K", "2024-04-15", true);
+        JdbcTemplateSingleton.insertTaskData("Test Task L", "Test Description L", "2024-05-01", false);
+        JdbcTemplateSingleton.insertTaskData("Test Task M", "Test Description M", "2024-05-15", true);
+    }
+
+    
+
+    @Test
+    public void contextLoads() {
+        // Simple test to check if the Spring context loads
+        insertTestData();
+        Assert.assertNotNull(jdbcTemplate, "JdbcTemplate should not be null");
+        logger.info("Spring context load test passed");
+    }
+
+    @Test
+    public void searchTask_withValidTitleAndDescription_shouldReturnCorrectTask() {
+        insertTestData();
+        
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: searchTask_withValidTitleAndDescription_shouldReturnCorrectTask");
+        logger.info("Starting test: searchTask_withValidTitleAndDescription_shouldReturnCorrectTask");
+        
+        taskSearchPage.enterTitle("Test Task A");
+        taskSearchPage.enterDescription("Test Description A");
         taskSearchPage.clickSearchButton();
 
         // Add assertions to verify the search results
-        WebElement taskRow = taskSearchPage.waitForTaskRow("Task 1", wait);
-        Assert.assertNotNull(taskRow, "Task 1 should be present in the search results.");
+        WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
+        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task search test passed");
+        logger.info("Task search test passed");
     }
 
+
+
+    /**
+     * Test for the Title Field:
+     * 
+     * Scenario: Search tasks by title.
+     * Steps: Enter a title in the title search field and click the "Consult Records" button.
+     * Expected Result: Only tasks that match the entered title should be displayed.
+     * All columns (Title, Description, Due Date, Completed, Actions) should be validated.
+     */
     @Test
-    public void testCreateNewTask() {
-        ExtentReportManager.getTest().log(Status.INFO, "Starting test: testCreateNewTask");
+    public void searchTask_byTitle_shouldReturnMatchingTasks() {
+        insertTestData();
+        
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: searchTask_byTitle_shouldReturnMatchingTasks");
+        logger.info("Starting test: searchTask_byTitle_shouldReturnMatchingTasks");
+        
+        taskSearchPage.enterTitle("Test Task A");
+        taskSearchPage.clickSearchButton();
+
+        WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
+        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        
+        // Validate Description
+        String description = taskSearchPage.getTaskDescription(taskRow);
+        Assert.assertEquals(description, "Test Description A", "The description should match 'Test Description A'.");
+
+        // Validate Due Date
+        String dueDate = taskSearchPage.getTaskDueDate(taskRow);
+        Assert.assertEquals(dueDate, "2024-07-15", "The due date should match '2024-07-15'.");
+
+        // Validate Completed Status
+        String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
+        Assert.assertEquals(completed, "No", "The task should not be completed.");
+
+        // Validate Actions
+        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task search by title test passed");
+        logger.info("Task search by title test passed");
+    }
+
+    
+    /**
+     * Test for the Description Field:
+     * 
+     * Scenario: Search tasks by description.
+     * Steps: Enter a description in the description search field and click the "Consult Records" button.
+     * Expected Result: Only tasks that match the entered description should be displayed.
+     * All columns (Title, Description, Due Date, Completed, Actions) should be validated.
+     */
+    @Test
+    public void searchTask_byDescription_shouldReturnMatchingTasks() {
+        insertTestData();
+        
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: searchTask_byDescription_shouldReturnMatchingTasks");
+        logger.info("Starting test: searchTask_byDescription_shouldReturnMatchingTasks");
+        
+        taskSearchPage.enterDescription("Test Description A");
+        taskSearchPage.clickSearchButton();
+
+        WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
+        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        
+        // Validate Title
+        String title = taskSearchPage.getTaskTitle(taskRow);
+        Assert.assertEquals(title, "Test Task A", "The title should match 'Test Task A'.");
+
+        // Validate Due Date
+        String dueDate = taskSearchPage.getTaskDueDate(taskRow);
+        Assert.assertEquals(dueDate, "2024-07-15", "The due date should match '2024-07-15'.");
+
+        // Validate Completed Status
+        String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
+        Assert.assertEquals(completed, "No", "The task should not be completed.");
+
+        // Validate Actions
+        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task search by description test passed");
+        logger.info("Task search by description test passed");
+    }
+
+    
+    /**
+     * Test for the Due Date Field:
+     * 
+     * Scenario: Search tasks by due date.
+     * Steps: Enter a due date in the due date field and click the "Consult Records" button.
+     * Expected Result: Only tasks that match the entered due date should be displayed.
+     * All columns (Title, Description, Due Date, Completed, Actions) should be validated.
+     */
+    @Test
+    public void searchTask_byDueDate_shouldReturnMatchingTasks() {
+        insertTestData();
+        
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: searchTask_byDueDate_shouldReturnMatchingTasks");
+        logger.info("Starting test: searchTask_byDueDate_shouldReturnMatchingTasks");
+        
+        taskSearchPage.enterDueDate("2024-07-15");
+        taskSearchPage.clickSearchButton();
+
+        WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
+        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        
+        // Validate Title
+        String title = taskSearchPage.getTaskTitle(taskRow);
+        Assert.assertEquals(title, "Test Task A", "The title should match 'Test Task A'.");
+
+        // Validate Description
+        String description = taskSearchPage.getTaskDescription(taskRow);
+        Assert.assertEquals(description, "Test Description A", "The description should match 'Test Description A'.");
+
+        // Validate Completed Status
+        String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
+        Assert.assertEquals(completed, "No", "The task should not be completed.");
+
+        // Validate Actions
+        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task search by due date test passed");
+        logger.info("Task search by due date test passed");
+    }
+    
+    /**
+     * Test for the Completion Status Checkboxes:
+     * 
+     * Scenario: Filter tasks by completion status.
+     * Steps: Check the "Completed" checkbox and click the "Consult Records" button.
+     * Expected Result: Only tasks that are completed should be displayed.
+     * All columns (Title, Description, Due Date, Completed, Actions) should be validated.
+     */
+    @Test
+    public void filterTask_byCompletedStatus_shouldReturnCompletedTasks() {
+        insertTestData();
+        
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: filterTask_byCompletedStatus_shouldReturnCompletedTasks");
+        logger.info("Starting test: filterTask_byCompletedStatus_shouldReturnCompletedTasks");
+        
+        taskSearchPage.selectCompletedCheckbox();
+        taskSearchPage.clickSearchButton();
+
+        List<WebElement> completedTasks = taskSearchPage.getCompletedTasks();
+        for (WebElement task : completedTasks) {
+            // Validate Title
+            String title = taskSearchPage.getTaskTitle(task);
+            Assert.assertTrue(title.startsWith("Test Task"), "The title should start with 'Test Task'.");
+
+            // Validate Description
+            String description = taskSearchPage.getTaskDescription(task);
+            Assert.assertTrue(description.startsWith("Test Description"), "The description should start with 'Test Description'.");
+
+            // Validate Due Date
+            String dueDate = taskSearchPage.getTaskDueDate(task);
+            Assert.assertNotNull(dueDate, "The due date should not be null.");
+
+            // Validate Completed Status
+            String completed = taskSearchPage.getTaskCompletedStatus(task);
+            Assert.assertEquals(completed, "Yes", "The task should be completed.");
+
+            // Validate Actions
+            Assert.assertTrue(taskSearchPage.hasEditButton(task), "The edit button should be present.");
+            Assert.assertTrue(taskSearchPage.hasDeleteButton(task), "The delete button should be present.");
+        }
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task filter by completed status test passed");
+        logger.info("Task filter by completed status test passed");
+    }
+    
+    /**
+     * Test for the Create Record Button:
+     * 
+     * Scenario: Verify navigation to the task creation page.
+     * Steps: Click the "Create Record" button.
+     * Expected Result: The system should navigate to the task creation page.
+     * Validate that the URL contains "/task/new".
+     */
+    @Test
+    public void createTaskButton_shouldNavigateToCreateTaskPage() {
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: createTaskButton_shouldNavigateToCreateTaskPage");
+        logger.info("Starting test: createTaskButton_shouldNavigateToCreateTaskPage");
+        
         taskSearchPage.clickCreateTaskButton();
         
-        // Add assertions to verify navigation to the create task page
         Assert.assertTrue(driver.getCurrentUrl().contains("/task/new"), "Should navigate to the create task page.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Create new task navigation test passed");
+        logger.info("Create new task navigation test passed");
+    }
+    
+
+    /**
+     * Test to fill the fields title, description, and completed status
+     * and verify if the data is inserted correctly.
+     */
+    @Test
+    public void filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks() {
+        // Insert test data
+        JdbcTemplateSingleton.insertTaskData("Test Task C", "Test Description C", "2023-12-31", true);
+        
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks");
+        logger.info("Starting test: filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks");
+
+        // Fill in the search fields
+        taskSearchPage.enterTitle("Test Task C");
+        taskSearchPage.enterDescription("Test Description C");
+        taskSearchPage.selectCompletedCheckbox();
+        taskSearchPage.clickSearchButton();
+
+        // Verify the search results
+        WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task C", wait);
+        Assert.assertNotNull(taskRow, "Test Task C should be present in the search results.");
+        
+        // Validate Description
+        String description = taskSearchPage.getTaskDescription(taskRow);
+        Assert.assertEquals(description, "Test Description C", "The description should match 'Test Description C'.");
+
+        // Validate Due Date
+        String dueDate = taskSearchPage.getTaskDueDate(taskRow);
+        Assert.assertEquals(dueDate, "2023-12-31", "The due date should match '2023-12-31'.");
+
+        // Validate Completed Status
+        String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
+        Assert.assertEquals(completed, "Yes", "The task should be completed.");
+
+        // Validate Actions
+        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task filter by title, description, and completed status test passed");
+        logger.info("Task filter by title, description, and completed status test passed");
+    }
+    
+    /**
+     * Test to validate that appropriate error messages are displayed when no results are found for a specific query.
+     */
+    @Test
+    public void searchTask_withNonExistentCriteria_shouldDisplayErrorMessage() {
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: searchTask_withNonExistentCriteria_shouldDisplayErrorMessage");
+        logger.info("Starting test: searchTask_withNonExistentCriteria_shouldDisplayErrorMessage");
+
+        // Fill in the search fields with non-existent criteria
+        taskSearchPage.enterTitle("NonExistent Task");
+        taskSearchPage.enterDescription("NonExistent Description");
+        taskSearchPage.clickSearchButton();
+
+        // Verify that the error message is displayed
+        WebElement errorMessage = taskSearchPage.getErrorMessage();
+        Assert.assertNotNull(errorMessage, "Error message should be displayed when no results are found.");
+        Assert.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Error message validation test passed");
+        logger.info("Error message validation test passed");
     }
 
-    // Add more tests for other interactions and validations
 
-    // Cleanup method is managed by BaseTest
+    /**
+     * Test to validate pagination functionality.
+     * This test ensures that navigating between different pages of results works correctly.
+     */
+    @Test
+    public void pagination_shouldWorkCorrectly() {
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: pagination_shouldWorkCorrectly");
+        logger.info("Starting test: pagination_shouldWorkCorrectly");
+
+        // Insert test data
+        insertTestData();
+        
+        // Fill in the search fields with non-existent criteria
+        taskSearchPage.enterTitle("Test Task");
+        taskSearchPage.clickSearchButton();
+
+        // Verify the first task on the second page
+        WebElement firstTaskOnSecondPage = taskSearchPage.getFirstTaskOnCurrentPage();
+        Assert.assertNotNull(firstTaskOnSecondPage, "There should be a task displayed on the second page.");
+        Assert.assertTrue(firstTaskOnSecondPage.getText().contains("Test Task F") || firstTaskOnSecondPage.getText().contains("Test Task G"), "The first task on the second page should be a task from the inserted test data.");
+
+        // Navigate to the second page
+        taskSearchPage.clickPaginationNext();
+        
+        // Navigate back to the first page
+        taskSearchPage.clickPaginationPrevious();
+        
+        // Verify the first task on the first page
+        WebElement firstTaskOnFirstPage = taskSearchPage.getFirstTaskOnCurrentPage();
+        Assert.assertNotNull(firstTaskOnFirstPage, "There should be a task displayed on the first page.");
+        Assert.assertTrue(firstTaskOnFirstPage.getText().contains("Test Task A") || firstTaskOnFirstPage.getText().contains("Test Task B"), "The first task on the first page should be a task from the inserted test data.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Pagination functionality test passed");
+        logger.info("Pagination functionality test passed");
+    }
+
+
+
 }
