@@ -68,8 +68,13 @@ public class TaskSearchPage {
 
     @FindBy(xpath = "//tbody/tr[not(@id='task-search-no-content')][1]") // XPath selector for the first task row on the current page
     WebElement firstTaskRow;
+    
+    @FindBy(id = "toast-container")
+    WebElement confirmRemoveMessage;
+    
+    
 
-    /**
+	/**
      * Constructor to initialize the WebDriver and page elements.
      * 
      * <p>This constructor sets the WebDriver instance and initializes the web 
@@ -122,6 +127,17 @@ public class TaskSearchPage {
      */
     public WebElement getTaskRow(String taskTitle) {
         return driver.findElement(By.xpath("//td[@id='task-search-column-task-title' and text()='" + taskTitle + "']/parent::tr"));
+    }
+
+    /**
+     * Gets the delete button for the specified task.
+     * 
+     * @param taskTitle the title of the task
+     * @return the WebElement of the delete button for the task
+     */
+    public WebElement getDeleteButtonForTask(String taskTitle) {
+        WebElement taskRow = getTaskRow(taskTitle);
+        return taskRow.findElement(By.id("task-search-action-remove-task"));
     }
 
     /**
@@ -293,4 +309,22 @@ public class TaskSearchPage {
     public WebElement getFirstTaskOnCurrentPage() {
         return driver.findElement(By.xpath("//tbody/tr[not(contains(@class,'no-content-message'))][1]"));
     }
+
+    /**
+     * Gets the success message displayed after a task is successfully deleted.
+     *
+     * @return the WebElement of the success message
+     */
+    public WebElement getSuccessMessage() {
+        return driver.findElement(By.id("success-message"));
+    }
+    
+    /**
+     * Gets the confirm remove message displayed when the record was removed.
+     * 
+     * @return the WebElement of the confirm remove message
+     */
+    public WebElement getConfirmRemoveMessage() {
+		return confirmRemoveMessage;
+	}
 }

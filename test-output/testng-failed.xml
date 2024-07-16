@@ -6,8 +6,8 @@
       <class name="com.taskmanagerplus.tests.TaskSearchTest">
         <methods>
           <include name="tearDown"/>
+          <include name="deleteTask_shouldRemoveTaskFromList"/>
           <include name="setUpClass"/>
-          <include name="pagination_shouldWorkCorrectly"/>
           <include name="beforeSuite"/>
           <include name="setUp"/>
         </methods>

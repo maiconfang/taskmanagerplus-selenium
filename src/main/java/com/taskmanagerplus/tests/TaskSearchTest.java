@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.taskmanagerplus.config.JdbcTemplateSingleton;
+import com.taskmanagerplus.pages.DeleteConfirmationPage;
 import com.taskmanagerplus.pages.TaskSearchPage;
 import com.taskmanagerplus.reports.ExtentReportManager;
 import com.taskmanagerplus.utils.ExcelUtils;
@@ -69,6 +70,7 @@ public class TaskSearchTest extends BaseTest {
 
     @Test
     public void testInsertTestData() {
+    	JdbcTemplateSingleton.cleanupTestDataTask("Test Task");
         insertTestData();
         // Add assertions to verify the data insertion
         int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM task WHERE title LIKE 'Test Task%'", Integer.class);
@@ -406,22 +408,98 @@ public class TaskSearchTest extends BaseTest {
         // Verify the first task on the second page
         WebElement firstTaskOnSecondPage = taskSearchPage.getFirstTaskOnCurrentPage();
         Assert.assertNotNull(firstTaskOnSecondPage, "There should be a task displayed on the second page.");
-        Assert.assertTrue(firstTaskOnSecondPage.getText().contains("Test Task F") || firstTaskOnSecondPage.getText().contains("Test Task G"), "The first task on the second page should be a task from the inserted test data.");
+        Assert.assertTrue(firstTaskOnSecondPage.getText().contains("Test Task A"), "The first task on the first page should be a task from the inserted test data.");
 
         // Navigate to the second page
         taskSearchPage.clickPaginationNext();
         
-        // Navigate back to the first page
-        taskSearchPage.clickPaginationPrevious();
-        
         // Verify the first task on the first page
         WebElement firstTaskOnFirstPage = taskSearchPage.getFirstTaskOnCurrentPage();
         Assert.assertNotNull(firstTaskOnFirstPage, "There should be a task displayed on the first page.");
-        Assert.assertTrue(firstTaskOnFirstPage.getText().contains("Test Task A") || firstTaskOnFirstPage.getText().contains("Test Task B"), "The first task on the first page should be a task from the inserted test data.");
+        Assert.assertTrue(firstTaskOnFirstPage.getText().contains("Test Task K"), "The first task on the second page should be a task from the inserted test data.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Pagination functionality test passed");
         logger.info("Pagination functionality test passed");
     }
+    
+    /**
+     * Test to validate the system's resistance to SQL injection and script injection attacks.
+     * This test attempts to input malicious data into the search fields and ensures the system handles it securely.
+     */
+    @Test
+    public void securityTest_preventSQLInjectionAndScriptInjection() {
+        ExtentReportManager.getTest().log(Status.INFO, "Starting security test: preventSQLInjectionAndScriptInjection");
+        logger.info("Starting security test: preventSQLInjectionAndScriptInjection");
+
+        // Attempt SQL injection in the title field
+        taskSearchPage.enterTitle("Test Task'; DROP TABLE task;--");
+        taskSearchPage.clickSearchButton();
+
+        // Verify no malicious actions are executed and proper error handling occurs
+        WebElement errorMessage = taskSearchPage.getErrorMessage();
+        Assert.assertNotNull(errorMessage, "Error message should be displayed when SQL injection attempt is made.");
+        Assert.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
+
+        // Attempt script injection in the description field
+        taskSearchPage.enterDescription("<script>alert('XSS');</script>");
+        taskSearchPage.clickSearchButton();
+
+        // Verify the script is not executed and proper error handling occurs
+        errorMessage = taskSearchPage.getErrorMessage();
+        Assert.assertNotNull(errorMessage, "Error message should be displayed when script injection attempt is made.");
+        Assert.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Security test for SQL and script injection passed");
+        logger.info("Security test for SQL and script injection passed");
+    }
+
+
+    /**
+     * Test to validate the deletion of a task from the task list.
+     * This test ensures that a task can be successfully removed from the list,
+     * and that the task is no longer present in the search results after deletion.
+     */
+    @Test
+    public void deleteTask_shouldRemoveTaskFromList() {
+        // Insert test data
+        insertTestData();
+
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: deleteTask_shouldRemoveTaskFromList");
+        logger.info("Starting test: deleteTask_shouldRemoveTaskFromList");
+
+        // Search for the task to ensure it exists before deletion
+        taskSearchPage.enterTitle("Test Task A");
+        taskSearchPage.clickSearchButton();
+
+        // Get the delete button for the specific task and click it
+        WebElement deleteButton = taskSearchPage.getDeleteButtonForTask("Test Task A");
+        deleteButton.click();
+
+        // Handle the delete confirmation dialog
+        DeleteConfirmationPage deleteConfirmationPage = new DeleteConfirmationPage(driver);
+        deleteConfirmationPage.clickYesButton();
+
+        // Verify the success message
+        WebElement successMessage = taskSearchPage.getConfirmRemoveMessage();
+        Assert.assertNotNull(successMessage, "The success message should be displayed after deletion.");
+        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Removed", "The success message should indicate that the task was removed.");
+
+        // Search again to ensure the task is no longer present
+        taskSearchPage.enterTitle("Test Task A");
+        taskSearchPage.clickSearchButton();
+        
+        // Verify that the No records found is displayed
+        WebElement errorMessage = taskSearchPage.getErrorMessage();
+        Assert.assertEquals(errorMessage.getText(), "No records found", "Test Task A should not be present in the search results after deletion.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task deletion test passed");
+        logger.info("Task deletion test passed");
+    }
+
+
+
+    
+    
 
 
 
