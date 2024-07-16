@@ -34,8 +34,11 @@ import org.slf4j.LoggerFactory;
 public class TaskSearchTest extends BaseTest {
 
     private ExcelUtils excelUtils;
+    
     private TaskSearchPage taskSearchPage;
+    
     private JdbcTemplate jdbcTemplate;
+    
     private static final Logger logger = LoggerFactory.getLogger(TaskSearchTest.class);
 
     @BeforeClass
@@ -135,10 +138,16 @@ public class TaskSearchTest extends BaseTest {
     /**
      * Test for the Title Field:
      * 
-     * Scenario: Search tasks by title.
-     * Steps: Enter a title in the title search field and click the "Consult Records" button.
-     * Expected Result: Only tasks that match the entered title should be displayed.
-     * All columns (Title, Description, Due Date, Completed, Actions) should be validated.
+     * <p>Scenario: Search tasks by title.</p>
+     * <p>Steps:</p>
+     * <ol>
+     * <li>Insert test data.</li>
+     * <li>Enter a title in the title search field.</li>
+     * <li>Click the "Consult Records" button.</li>
+     * <li>Validate that only tasks matching the entered title are displayed.</li>
+     * </ol>
+     * <p>Expected Result: Only tasks that match the entered title should be displayed.
+     * All columns (Title, Description, Due Date, Completed, Actions) should be validated.</p>
      */
     @Test
     public void searchTask_byTitle_shouldReturnMatchingTasks() {

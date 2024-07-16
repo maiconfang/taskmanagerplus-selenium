@@ -37,6 +37,13 @@ public class TaskRegisterPage {
 
     @FindBy(id = "task-register-description") // ID of the description input field
     WebElement descriptionInput;
+    
+    @FindBy(id = "task-register-duedate") // ID of the dueDate input field
+    WebElement dueDateInput;
+
+    @FindBy(id = "task-register-completed") // ID of the completed checkbox
+    WebElement completedCheckbox;
+
 
     @FindBy(id = "task-register-btn-save-task") // ID of the save button
     WebElement saveButton;
@@ -44,8 +51,6 @@ public class TaskRegisterPage {
     @FindBy(id = "task-register-btn-back") // ID of the back button
     WebElement backButton;
 
-    @FindBy(id = "task-register-completed") // ID of the completed checkbox
-    WebElement completedCheckbox;
 
     // Add locators for other fields like due date
 
@@ -86,7 +91,7 @@ public class TaskRegisterPage {
      * @param dueDate the due date to be entered
      */
     public void enterDueDate(String dueDate) {
-        // Locate the due date input field and enter the due date
+    	dueDateInput.sendKeys(dueDate);
     }
 
     /**
@@ -116,5 +121,28 @@ public class TaskRegisterPage {
         backButton.click();
     }
 
-    // Add methods to interact with other elements like due date input field
+    /**
+     * Retrieves the save button element.
+     * 
+     * @return the WebElement representing the save button
+     */
+    public WebElement getSaveButton() {
+        return saveButton;
+    }
+    
+    /**
+     * Clicks the title input field.
+     */
+    public void clickTitleInput() {
+        titleInput.click();
+    }
+    
+    /**
+     * Checks if the completed checkbox is selected.
+     * 
+     * @return true if the completed checkbox is selected, false otherwise
+     */
+    public boolean isCompletedChecked() {
+        return completedCheckbox.isSelected();
+    }
 }

@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.taskmanagerplus.tests.TaskSearchTest">
+      <class name="com.taskmanagerplus.tests.TaskRegisterTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="deleteTask_shouldRemoveTaskFromList"/>
           <include name="setUpClass"/>
-          <include name="beforeSuite"/>
           <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="backButton_shouldNavigateToSearchPage"/>
+          <include name="beforeSuite"/>
         </methods>
-      </class> <!-- com.taskmanagerplus.tests.TaskSearchTest -->
+      </class> <!-- com.taskmanagerplus.tests.TaskRegisterTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

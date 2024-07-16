@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\maico\AppData\Local\Temp\testng-eclipse--1274919743\testng-customsuite.xml</span>
+                    <span>C:\Users\maico\AppData\Local\Temp\testng-eclipse-1681661695\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.taskmanagerplus.tests.TaskSearchTest" class="method navigator-link" hash-for-method="deleteTask_shouldRemoveTaskFromList">deleteTask_shouldRemoveTaskFromList</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.taskmanagerplus.tests.TaskRegisterTest" class="method navigator-link" hash-for-method="completedCheckbox_shouldToggleCorrectly">completedCheckbox_shouldToggleCorrectly</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,14 +121,14 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.taskmanagerplus.tests.TaskSearchTest</span>
+              <span class="class-name">com.taskmanagerplus.tests.TaskRegisterTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="deleteTask_shouldRemoveTaskFromList">
-                  </a> <!-- deleteTask_shouldRemoveTaskFromList -->
-                  <span class="method-name">deleteTask_shouldRemoveTaskFromList</span>
+                  <a name="completedCheckbox_shouldToggleCorrectly">
+                  </a> <!-- completedCheckbox_shouldToggleCorrectly -->
+                  <span class="method-name">completedCheckbox_shouldToggleCorrectly</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\maico\AppData\Local\Temp\testng-eclipse--1274919743\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\maico\AppData\Local\Temp\testng-eclipse-1681661695\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -145,11 +145,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.taskmanagerplus.tests.TaskSearchTest&quot;&gt;
+      &lt;class name=&quot;com.taskmanagerplus.tests.TaskRegisterTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;deleteTask_shouldRemoveTaskFromList&quot;/&gt;
+          &lt;include name=&quot;completedCheckbox_shouldToggleCorrectly&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- com.taskmanagerplus.tests.TaskSearchTest --&gt;
+      &lt;/class&gt; &lt;!-- com.taskmanagerplus.tests.TaskRegisterTest --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -191,14 +191,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'deleteTask_shouldRemoveTaskFromList')
-data.setCell(0, 2, 'com.taskmanagerplus.tests.TaskSearchTest')
-data.setCell(0, 3, 4821);
+data.setCell(0, 1, 'completedCheckbox_shouldToggleCorrectly')
+data.setCell(0, 2, 'com.taskmanagerplus.tests.TaskRegisterTest')
+data.setCell(0, 3, 200);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 seconds</span>
+              <span class="suite-total-time">Total running time: 200 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -213,35 +213,17 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">12 ignored methods</span>
+            <span class="header-content">3 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.taskmanagerplus.tests.TaskSearchTest</span>
+              <span class="ignored-class-name">com.taskmanagerplus.tests.TaskRegisterTest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">searchTask_byDueDate_shouldReturnMatchingTasks</span>
+                <span class="ignored-method-name">backButton_shouldNavigateToSearchPage</span>
                 <br/>
-                <span class="ignored-method-name">searchTask_withNonExistentCriteria_shouldDisplayErrorMessage</span>
+                <span class="ignored-method-name">createTask_withAllFieldsFilled_shouldSucceed</span>
                 <br/>
-                <span class="ignored-method-name">filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks</span>
-                <br/>
-                <span class="ignored-method-name">securityTest_preventSQLInjectionAndScriptInjection</span>
-                <br/>
-                <span class="ignored-method-name">testInsertTestData</span>
-                <br/>
-                <span class="ignored-method-name">contextLoads</span>
-                <br/>
-                <span class="ignored-method-name">searchTask_byDescription_shouldReturnMatchingTasks</span>
-                <br/>
-                <span class="ignored-method-name">pagination_shouldWorkCorrectly</span>
-                <br/>
-                <span class="ignored-method-name">searchTask_withValidTitleAndDescription_shouldReturnCorrectTask</span>
-                <br/>
-                <span class="ignored-method-name">filterTask_byCompletedStatus_shouldReturnCompletedTasks</span>
-                <br/>
-                <span class="ignored-method-name">searchTask_byTitle_shouldReturnMatchingTasks</span>
-                <br/>
-                <span class="ignored-method-name">createTaskButton_shouldNavigateToCreateTaskPage</span>
+                <span class="ignored-method-name">createTask_withMandatoryFieldsOnly_shouldSucceed</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -253,26 +235,26 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.taskmanagerplus.tests.TaskSearchTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.taskmanagerplus.tests.TaskRegisterTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">beforeSuite</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
                 <span class="method-name">setUpClass</span>
-                <span class="method-start">285 ms</span>
+                <span class="method-start">253 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">975 ms</span>
+                <span class="method-start">901 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">deleteTask_shouldRemoveTaskFromList</span>
-                <span class="method-start">4314 ms</span>
+                <span class="method-name">completedCheckbox_shouldToggleCorrectly</span>
+                <span class="method-start">4302 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">9138 ms</span>
+                <span class="method-start">4505 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
