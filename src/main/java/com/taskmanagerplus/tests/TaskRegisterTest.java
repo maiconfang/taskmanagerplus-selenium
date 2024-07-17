@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
+import com.taskmanagerplus.config.JdbcTemplateSingleton;
 import com.taskmanagerplus.pages.NotificationPage;
 import com.taskmanagerplus.pages.TaskRegisterPage;
 import com.taskmanagerplus.pages.TaskSearchPage;
@@ -28,15 +29,20 @@ import com.taskmanagerplus.utils.ExcelUtils;
  */
 public class TaskRegisterTest extends BaseTest {
 
-    private TaskRegisterPage taskRegisterPage;
+	private static final Logger logger = LoggerFactory.getLogger(TaskRegisterTest.class);
+
+	private TaskRegisterPage taskRegisterPage;
+    
     private TaskSearchPage taskSearchPage;
+    
     private ExcelUtils excelUtils;
-    private static final Logger logger = LoggerFactory.getLogger(TaskRegisterTest.class);
+    
 
     @BeforeClass
     public void setUpClass() {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
+
     }
 
     @BeforeMethod
@@ -66,10 +72,15 @@ public class TaskRegisterTest extends BaseTest {
 
     @AfterMethod
     public void tearDown() {
+        cleanupTestData();
+        logger.info("Test data cleaned up and browser closed");
+    }
+    
+    private void cleanupTestData() {
+        JdbcTemplateSingleton.cleanupTestDataTask("Test Task");
         if (driver != null) {
             driver.quit();
         }
-        logger.info("Test data cleaned up and browser closed");
     }
 
     /**
@@ -196,7 +207,80 @@ public class TaskRegisterTest extends BaseTest {
     }
 
 	
-	
+
+    /**
+     * Test to verify that a task can be created and subsequently verified in the task search page.
+     * 
+     * <p>Scenario: Create a new task by filling in all required fields on the task registration form,
+     * save the task, and verify its presence and correctness in the task search results.</p>
+     * <p>Steps:</p>
+     * <ol>
+     * <li>Enter a title in the title input field.</li>
+     * <li>Enter a description in the description input field.</li>
+     * <li>Enter a due date in the due date input field.</li>
+     * <li>Set the completed status to false.</li>
+     * <li>Click on another element to trigger form validation.</li>
+     * <li>Click the save button to create the task.</li>
+     * <li>Verify that a success message is displayed indicating the task was created.</li>
+     * <li>Navigate back to the task search page.</li>
+     * <li>Enter the title of the created task in the search field.</li>
+     * <li>Click the search button to find the task.</li>
+     * <li>Verify the task appears in the search results with the correct title, description, due date, and completed status.</li>
+     * <li>Verify the presence of the edit and delete buttons for the task in the search results.</li>
+     * </ol>
+     * <p>Expected Result: The task should be successfully created, the success message should be displayed,
+     * and the task should be correctly displayed in the search results with the expected details.</p>
+     */
+    @Test
+    public void createAndVerifyTask_shouldSucceed() {
+        ExtentReportManager.getTest().log(Status.INFO, "Starting test: createAndVerifyTask_shouldSucceed");
+
+        String taskTitle = "Test Task Verification";
+        String taskDescription = "Test Task Description Verification";
+        String taskDueDate = "2024-07-17";
+        
+        taskRegisterPage.enterTitle(taskTitle);
+        taskRegisterPage.enterDescription(taskDescription);
+        taskRegisterPage.enterDueDate(taskDueDate);
+        taskRegisterPage.setCompleted(false);
+        
+        // Click on another element to trigger the form validation
+        taskRegisterPage.clickTitleInput();
+        
+        // Click the save button
+        taskRegisterPage.clickSaveButton();
+        
+        NotificationPage notificationPage = new NotificationPage(driver);
+        WebElement successMessage = notificationPage.getConfirmRemoveMessage();
+        Assert.assertNotNull(successMessage, "The success message should be displayed after task creation.");
+        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task creation test passed");
+        logger.info("Task creation test passed");
+
+        // Navigate back to the task search page and verify the created task
+        taskSearchPage = navigateToTaskPage();
+        taskSearchPage.enterTitle(taskTitle);
+        taskSearchPage.clickSearchButton();
+
+        WebElement taskRow = taskSearchPage.waitForTaskRow(taskTitle, wait);
+        Assert.assertNotNull(taskRow, "The created task should be present in the search results.");
+        
+        String description = taskSearchPage.getTaskDescription(taskRow);
+        Assert.assertEquals(description, taskDescription, "The description should match.");
+
+        String dueDate = taskSearchPage.getTaskDueDate(taskRow);
+        Assert.assertEquals(dueDate, taskDueDate, "The due date should match.");
+
+        String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
+        Assert.assertEquals(completed, "No", "The task should not be completed.");
+
+        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+
+        ExtentReportManager.getTest().log(Status.PASS, "Task verification test passed");
+        logger.info("Task verification test passed");
+    }
 
     
     

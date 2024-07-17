@@ -3,7 +3,8 @@ package com.taskmanagerplus.tests;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -16,8 +17,6 @@ import com.taskmanagerplus.pages.DeleteConfirmationPage;
 import com.taskmanagerplus.pages.TaskSearchPage;
 import com.taskmanagerplus.reports.ExtentReportManager;
 import com.taskmanagerplus.utils.ExcelUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Test class for the task search functionality in the Task Manager Plus application.
@@ -37,8 +36,6 @@ public class TaskSearchTest extends BaseTest {
     
     private TaskSearchPage taskSearchPage;
     
-    private JdbcTemplate jdbcTemplate;
-    
     private static final Logger logger = LoggerFactory.getLogger(TaskSearchTest.class);
 
     @BeforeClass
@@ -46,8 +43,6 @@ public class TaskSearchTest extends BaseTest {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
         
-        // Get the singleton instance of JdbcTemplate
-        jdbcTemplate = JdbcTemplateSingleton.getInstance();
     }
 
     @BeforeMethod
@@ -71,15 +66,6 @@ public class TaskSearchTest extends BaseTest {
         logger.info("Test data cleaned up and browser closed");
     }
 
-    @Test
-    public void testInsertTestData() {
-    	JdbcTemplateSingleton.cleanupTestDataTask("Test Task");
-        insertTestData();
-        // Add assertions to verify the data insertion
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM task WHERE title LIKE 'Test Task%'", Integer.class);
-        Assert.assertEquals(count, 2, "Two test tasks should be inserted.");
-        logger.info("Test data insertion verified");
-    }
     
     private void cleanupTestData() {
         JdbcTemplateSingleton.cleanupTestDataTask("Test Task");
@@ -104,15 +90,6 @@ public class TaskSearchTest extends BaseTest {
         JdbcTemplateSingleton.insertTaskData("Test Task M", "Test Description M", "2024-05-15", true);
     }
 
-    
-
-    @Test
-    public void contextLoads() {
-        // Simple test to check if the Spring context loads
-        insertTestData();
-        Assert.assertNotNull(jdbcTemplate, "JdbcTemplate should not be null");
-        logger.info("Spring context load test passed");
-    }
 
     @Test
     public void searchTask_withValidTitleAndDescription_shouldReturnCorrectTask() {
@@ -241,6 +218,10 @@ public class TaskSearchTest extends BaseTest {
         logger.info("Starting test: searchTask_byDueDate_shouldReturnMatchingTasks");
         
         taskSearchPage.enterDueDate("2024-07-15");
+        
+        // Click on another element to trigger the form validation
+        taskSearchPage.clickTitleInput();
+        
         taskSearchPage.clickSearchButton();
 
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);

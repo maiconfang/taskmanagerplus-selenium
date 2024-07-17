@@ -61,7 +61,11 @@ public class JdbcTemplateSingleton {
     }
 
     public static void insertTaskData(String title, String description, String dueDate, boolean completed) {
-        try {
+        
+        // Get the singleton instance of JdbcTemplate
+        jdbcTemplate = getInstance();
+    	
+    	try {
             String sql = "INSERT INTO task (title, description, due_date, completed) VALUES (?, ?, ?, ?)";
             jdbcTemplate.update(sql, title, description, dueDate, completed ? 1 : 0);
             logger.info("Inserted task data: title={}, description={}, dueDate={}, completed={}", title, description, dueDate, completed);
@@ -71,6 +75,10 @@ public class JdbcTemplateSingleton {
     }
 
     public static void cleanupTestDataTask(String titlePattern) {
+    	
+        // Get the singleton instance of JdbcTemplate
+        jdbcTemplate = getInstance();
+    	
         try {
             String sql = "DELETE FROM task WHERE title LIKE ?";
             jdbcTemplate.update(sql, titlePattern + '%');

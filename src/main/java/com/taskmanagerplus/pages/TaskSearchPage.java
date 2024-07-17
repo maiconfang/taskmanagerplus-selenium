@@ -71,10 +71,8 @@ public class TaskSearchPage {
     
     @FindBy(id = "toast-container")
     WebElement confirmRemoveMessage;
-    
-    
 
-	/**
+    /**
      * Constructor to initialize the WebDriver and page elements.
      * 
      * <p>This constructor sets the WebDriver instance and initializes the web 
@@ -325,6 +323,24 @@ public class TaskSearchPage {
      * @return the WebElement of the confirm remove message
      */
     public WebElement getConfirmRemoveMessage() {
-		return confirmRemoveMessage;
-	}
+        return confirmRemoveMessage;
+    }
+
+    /**
+     * Clicks the title input in the page.
+     */
+    public void clickTitleInput() {
+        titleInput.click();
+    }
+
+    /**
+     * Clicks the edit button for the specified task.
+     * 
+     * @param taskTitle the title of the task
+     */
+    public void clickEditButtonForTask(String taskTitle) {
+        WebElement taskRow = getTaskRow(taskTitle);
+        WebElement editButton = taskRow.findElement(By.id("task-search-action-update-task"));
+        editButton.click();
+    }
 }

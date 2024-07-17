@@ -73,6 +73,7 @@ public class TaskRegisterPage {
      * @param title the title to be entered
      */
     public void enterTitle(String title) {
+    	titleInput.clear();
         titleInput.sendKeys(title);
     }
 
@@ -82,6 +83,7 @@ public class TaskRegisterPage {
      * @param description the description to be entered
      */
     public void enterDescription(String description) {
+    	descriptionInput.clear();
         descriptionInput.sendKeys(description);
     }
 
@@ -91,6 +93,7 @@ public class TaskRegisterPage {
      * @param dueDate the due date to be entered
      */
     public void enterDueDate(String dueDate) {
+    	dueDateInput.clear();
     	dueDateInput.sendKeys(dueDate);
     }
 

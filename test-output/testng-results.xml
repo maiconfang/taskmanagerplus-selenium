@@ -2,32 +2,32 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-07-16T13:48:25 ADT" name="Default suite" finished-at="2024-07-16T13:48:29 ADT" duration-ms="4570">
+  <suite started-at="2024-07-17T11:10:33 ADT" name="Default suite" finished-at="2024-07-17T11:10:52 ADT" duration-ms="18571">
     <groups>
     </groups>
-    <test started-at="2024-07-16T13:48:25 ADT" name="Default test" finished-at="2024-07-16T13:48:29 ADT" duration-ms="4570">
-      <class name="com.taskmanagerplus.tests.TaskRegisterTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.taskmanagerplus.tests.TaskRegisterTest@49c90a9c]" started-at="2024-07-16T13:48:25 ADT" name="beforeSuite" finished-at="2024-07-16T13:48:25 ADT" duration-ms="225" status="PASS">
+    <test started-at="2024-07-17T11:10:33 ADT" name="Default test" finished-at="2024-07-17T11:10:52 ADT" duration-ms="18571">
+      <class name="com.taskmanagerplus.tests.TaskEditTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.taskmanagerplus.tests.TaskEditTest@7d9f158f]" started-at="2024-07-17T11:10:33 ADT" name="beforeSuite" finished-at="2024-07-17T11:10:33 ADT" duration-ms="232" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.taskmanagerplus.tests.TaskRegisterTest@49c90a9c]" started-at="2024-07-16T13:48:25 ADT" name="setUpClass" finished-at="2024-07-16T13:48:26 ADT" duration-ms="639" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.taskmanagerplus.tests.TaskEditTest@7d9f158f]" started-at="2024-07-17T11:10:33 ADT" name="setUpClass" finished-at="2024-07-17T11:10:34 ADT" duration-ms="680" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskRegisterTest@49c90a9c]" started-at="2024-07-16T13:48:26 ADT" name="setUp" finished-at="2024-07-16T13:48:29 ADT" duration-ms="3400" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskEditTest@7d9f158f]" started-at="2024-07-17T11:10:34 ADT" name="setUp" finished-at="2024-07-17T11:10:38 ADT" duration-ms="3831" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="completedCheckbox_shouldToggleCorrectly()[pri:0, instance:com.taskmanagerplus.tests.TaskRegisterTest@49c90a9c]" started-at="2024-07-16T13:48:29 ADT" name="completedCheckbox_shouldToggleCorrectly" finished-at="2024-07-16T13:48:29 ADT" duration-ms="200" status="PASS">
+        <test-method signature="editAndVerifyTask_shouldSucceed()[pri:0, instance:com.taskmanagerplus.tests.TaskEditTest@7d9f158f]" started-at="2024-07-17T11:10:38 ADT" name="editAndVerifyTask_shouldSucceed" finished-at="2024-07-17T11:10:51 ADT" duration-ms="13765" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- completedCheckbox_shouldToggleCorrectly -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskRegisterTest@49c90a9c]" started-at="2024-07-16T13:48:29 ADT" name="tearDown" finished-at="2024-07-16T13:48:29 ADT" duration-ms="290" status="PASS">
+        </test-method> <!-- editAndVerifyTask_shouldSucceed -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskEditTest@7d9f158f]" started-at="2024-07-17T11:10:51 ADT" name="tearDown" finished-at="2024-07-17T11:10:52 ADT" duration-ms="260" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.taskmanagerplus.tests.TaskRegisterTest -->
+      </class> <!-- com.taskmanagerplus.tests.TaskEditTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
