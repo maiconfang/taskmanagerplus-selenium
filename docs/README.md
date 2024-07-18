@@ -43,14 +43,14 @@ The Test Summary Report provides a high-level overview of the testing activities
 - [Project Overview](#project-overview)
 - [Project Structure](#project-structure)
 - [Test Documentation](#test-documentation)
-  - [DefectReport.md](docs/DefectReport.md)
-  - [RTM.md](docs/#rtm.md)
-  - [TestCases.md](docs/#testcases.md)
-  - [TestExecutionReport.md](docs/#testexecutionreport.md)
-  - [TestPlan.md](docs/#testplan.md)
-  - [TestStrategy.md](docs/#teststrategy.md)
-  - [TestSummaryReport.md](docs/#testsummaryreport.md)
-- [Technologies Used](docs/#technologies-used)
+  - [DefectReport.md](DefectReport.md)
+  - [RTM.md](RTM.md)
+  - [TestCases.md](TestCases.md)
+  - [TestExecutionReport.md](TestExecutionReport.md)
+  - [TestPlan.md](TestPlan.md)
+  - [TestStrategy.md](TestStrategy.md)
+  - [TestSummaryReport.md](TestSummaryReport.md)
+  - [Technologies Used](TechnologiesUsed.md)
 
 
 ## Project Structure
