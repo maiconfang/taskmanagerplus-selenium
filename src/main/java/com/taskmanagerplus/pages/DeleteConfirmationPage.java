@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class DeleteConfirmationPage {
-    private WebDriver driver;
+    @SuppressWarnings("unused")
+	private WebDriver driver;
 
     @FindBy(id = "dialog-confirmation-yes")
     private WebElement yesButton;

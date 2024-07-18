@@ -70,7 +70,22 @@ public class LoginTest extends BaseTest {
         return loginPage;
     }
     
-
+    /**
+     * Test for User Login:
+     * 
+     * <p>Scenario: Login with valid credentials and verify successful login.</p>
+     * <p>Steps:</p>
+     * <ol>
+     * <li>Navigate to the login page.</li>
+     * <li>Read login credentials from an Excel file.</li>
+     * <li>Enter the username and password into the respective fields.</li>
+     * <li>Click the login button.</li>
+     * <li>Wait for the URL to change to the application's home page.</li>
+     * <li>Verify that the current URL matches the expected URL.</li>
+     * <li>Verify the presence of specific elements on the dashboard (user link and logout button).</li>
+     * </ol>
+     * <p>Expected Result: The login should be successful, the URL should change to the application's home page, and the specific elements unique to the dashboard should be present.</p>
+     */
     @Test
     public void testLogin() {
 
@@ -109,6 +124,20 @@ public class LoginTest extends BaseTest {
     }
     
     
+    /**
+     * Test for Login with Invalid Credentials:
+     * 
+     * <p>Scenario: Attempt to login with invalid credentials and verify that an error message is displayed.</p>
+     * <p>Steps:</p>
+     * <ol>
+     * <li>Navigate to the login page.</li>
+     * <li>Enter invalid login credentials (username and password).</li>
+     * <li>Click the login button.</li>
+     * <li>Wait for the error message to be displayed.</li>
+     * <li>Verify that the error message is displayed indicating invalid login attempt.</li>
+     * </ol>
+     * <p>Expected Result: An error message should be displayed indicating that the login attempt was unsuccessful due to invalid credentials.</p>
+     */
     @Test
     public void testLoginWithInvalidCredentials() {
     	LoginPage loginPage = navigateToLoginPage();
@@ -131,6 +160,21 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "The error message was not displayed for invalid credentials.");
     }
     
+    /**
+     * Test for Login with Empty Credentials:
+     * 
+     * <p>Scenario: Attempt to login with empty credentials (long strings) and verify that error messages are displayed and the login button is disabled.</p>
+     * <p>Steps:</p>
+     * <ol>
+     * <li>Navigate to the login page.</li>
+     * <li>Generate long strings for login and password.</li>
+     * <li>Enter the long strings into the login and password fields.</li>
+     * <li>Verify that the login button is disabled.</li>
+     * <li>Wait for the error messages to be displayed.</li>
+     * <li>Verify that error messages for both login and password fields are displayed.</li>
+     * </ol>
+     * <p>Expected Result: The login button should be disabled, and error messages should be displayed for both the login and password fields.</p>
+     */
     @Test
     public void testLoginWithEmptyCredentials() {
         LoginPage loginPage = navigateToLoginPage();
@@ -163,7 +207,20 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.isPasswordErrorMessageDisplayed(), "The password error message was not displayed.");
     }
     
-    
+    /**
+     * Test for Login with Short Credentials:
+     * 
+     * <p>Scenario: Attempt to login with short credentials and verify that error messages are displayed and the login button is disabled.</p>
+     * <p>Steps:</p>
+     * <ol>
+     * <li>Navigate to the login page.</li>
+     * <li>Enter short strings for login and password.</li>
+     * <li>Verify that the login button is disabled.</li>
+     * <li>Wait for the error messages to be displayed.</li>
+     * <li>Verify that error messages for both login and password fields are displayed.</li>
+     * </ol>
+     * <p>Expected Result: The login button should be disabled, and error messages should be displayed for both the login and password fields.</p>
+     */
     @Test
     public void testLoginWithShortCredentials() {
         LoginPage loginPage = navigateToLoginPage();
