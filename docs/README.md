@@ -14,7 +14,7 @@ The TaskManagerPlus Selenium Test Suite aims to automate the testing of the Task
 - [Installation](#installation)
 - [Running Tests](#running-tests)
 - [Test Documentation](#test-documentation)
-  - [DefectReport.md](docs/DefectReport.md)
+  - [DefectReport.md](DefectReport.md)
   - [RTM.md](docs/RTM.md)
   - [TestCases.md](docs/TestCases.md)
   - [TestExecutionReport.md](docs/TestExecutionReport.md)
