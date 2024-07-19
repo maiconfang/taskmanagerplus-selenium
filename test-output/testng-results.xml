@@ -1,268 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="11" passed="9" failed="2" skipped="0">
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-07-18T10:43:25 ADT" name="Default suite" finished-at="2024-07-18T10:44:28 ADT" duration-ms="62578">
+  <suite started-at="2024-07-19T10:39:57 ADT" name="Default suite" finished-at="2024-07-19T10:40:09 ADT" duration-ms="12402">
     <groups>
     </groups>
-    <test started-at="2024-07-18T10:43:25 ADT" name="Default test" finished-at="2024-07-18T10:44:28 ADT" duration-ms="62578">
-      <class name="com.taskmanagerplus.tests.TaskSearchTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:25 ADT" name="beforeSuite" finished-at="2024-07-18T10:43:25 ADT" duration-ms="239" status="PASS">
+    <test started-at="2024-07-19T10:39:57 ADT" name="Default test" finished-at="2024-07-19T10:40:09 ADT" duration-ms="12402">
+      <class name="com.taskmanagerplus.tests.LoginTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:57 ADT" name="beforeSuite" finished-at="2024-07-19T10:39:57 ADT" duration-ms="262" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:25 ADT" name="setUpClass" finished-at="2024-07-18T10:43:26 ADT" duration-ms="634" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:57 ADT" name="setUpClass" finished-at="2024-07-19T10:39:58 ADT" duration-ms="692" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:26 ADT" name="setUp" finished-at="2024-07-18T10:43:30 ADT" duration-ms="4527" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:58 ADT" name="setUp" finished-at="2024-07-19T10:39:59 ADT" duration-ms="1827" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createTaskButton_shouldNavigateToCreateTaskPage()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:30 ADT" name="createTaskButton_shouldNavigateToCreateTaskPage" finished-at="2024-07-18T10:43:31 ADT" duration-ms="138" status="PASS">
+        <test-method signature="testLogin()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:59 ADT" name="testLogin" finished-at="2024-07-19T10:40:02 ADT" duration-ms="2637" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createTaskButton_shouldNavigateToCreateTaskPage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:31 ADT" name="tearDown" finished-at="2024-07-18T10:43:31 ADT" duration-ms="591" status="PASS">
+        </test-method> <!-- testLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:02 ADT" name="tearDown" finished-at="2024-07-19T10:40:03 ADT" duration-ms="557" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:31 ADT" name="setUp" finished-at="2024-07-18T10:43:34 ADT" duration-ms="3051" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:03 ADT" name="setUp" finished-at="2024-07-19T10:40:03 ADT" duration-ms="877" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="deleteTask_shouldRemoveTaskFromList()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:34 ADT" name="deleteTask_shouldRemoveTaskFromList" finished-at="2024-07-18T10:43:35 ADT" duration-ms="762" status="PASS">
+        <test-method signature="testLoginWithEmptyCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:03 ADT" name="testLoginWithEmptyCredentials" finished-at="2024-07-19T10:40:04 ADT" duration-ms="966" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- deleteTask_shouldRemoveTaskFromList -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:35 ADT" name="tearDown" finished-at="2024-07-18T10:43:35 ADT" duration-ms="173" status="PASS">
+        </test-method> <!-- testLoginWithEmptyCredentials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:04 ADT" name="tearDown" finished-at="2024-07-19T10:40:05 ADT" duration-ms="246" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:35 ADT" name="setUp" finished-at="2024-07-18T10:43:38 ADT" duration-ms="2694" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:05 ADT" name="setUp" finished-at="2024-07-19T10:40:06 ADT" duration-ms="889" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="filterTask_byCompletedStatus_shouldReturnCompletedTasks()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:38 ADT" name="filterTask_byCompletedStatus_shouldReturnCompletedTasks" finished-at="2024-07-18T10:43:48 ADT" duration-ms="10292" status="PASS">
+        <test-method signature="testLoginWithInvalidCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:06 ADT" name="testLoginWithInvalidCredentials" finished-at="2024-07-19T10:40:07 ADT" duration-ms="1499" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- filterTask_byCompletedStatus_shouldReturnCompletedTasks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:48 ADT" name="tearDown" finished-at="2024-07-18T10:43:49 ADT" duration-ms="304" status="PASS">
+        </test-method> <!-- testLoginWithInvalidCredentials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:07 ADT" name="tearDown" finished-at="2024-07-19T10:40:07 ADT" duration-ms="231" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:49 ADT" name="setUp" finished-at="2024-07-18T10:43:51 ADT" duration-ms="2658" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:07 ADT" name="setUp" finished-at="2024-07-19T10:40:08 ADT" duration-ms="886" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:51 ADT" name="filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks" finished-at="2024-07-18T10:43:52 ADT" duration-ms="427" status="PASS">
+        <test-method signature="testLoginWithShortCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:08 ADT" name="testLoginWithShortCredentials" finished-at="2024-07-19T10:40:09 ADT" duration-ms="848" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- filterTask_byTitleDescriptionAndCompletedStatus_shouldReturnCorrectTasks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:52 ADT" name="tearDown" finished-at="2024-07-18T10:43:52 ADT" duration-ms="253" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:52 ADT" name="setUp" finished-at="2024-07-18T10:43:55 ADT" duration-ms="2746" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="pagination_shouldWorkCorrectly()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:55 ADT" name="pagination_shouldWorkCorrectly" finished-at="2024-07-18T10:43:55 ADT" duration-ms="313" status="FAIL">
-          <exception class="org.openqa.selenium.StaleElementReferenceException">
-            <message>
-              <![CDATA[stale element reference: stale element not found in the current frame
-  (Session info: chrome=126.0.6478.128)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-Build info: version: '4.22.0', revision: 'c5f3146703*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [debf3ffaa14e43219694c126553ffb49, getElementText {id=f.BE9B8F81DDA7FF2725060AEE636FB1A4.d.8E7D9870F3F55933D4EF1D1711D51BA1.e.47}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.128, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Users\maico\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60525}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60525/devtoo..., se:cdpVersion: 126.0.6478.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (debf3ffaa14e43219694c126553ffb49)] -> xpath: //tbody/tr[not(contains(@class,'no-content-message'))][1]]
-Session ID: debf3ffaa14e43219694c126553ffb49]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
-  (Session info: chrome=126.0.6478.128)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-Build info: version: '4.22.0', revision: 'c5f3146703*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [debf3ffaa14e43219694c126553ffb49, getElementText {id=f.BE9B8F81DDA7FF2725060AEE636FB1A4.d.8E7D9870F3F55933D4EF1D1711D51BA1.e.47}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.128, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Users\maico\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60525}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60525/devtoo..., se:cdpVersion: 126.0.6478.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (debf3ffaa14e43219694c126553ffb49)] -> xpath: //tbody/tr[not(contains(@class,'no-content-message'))][1]]
-Session ID: debf3ffaa14e43219694c126553ffb49
-at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
-at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:191)
-at com.taskmanagerplus.tests.TaskSearchTest.pagination_shouldWorkCorrectly(TaskSearchTest.java:401)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- pagination_shouldWorkCorrectly -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:55 ADT" name="tearDown" finished-at="2024-07-18T10:43:56 ADT" duration-ms="284" status="PASS">
+        </test-method> <!-- testLoginWithShortCredentials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:09 ADT" name="tearDown" finished-at="2024-07-19T10:40:09 ADT" duration-ms="192" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:56 ADT" name="setUp" finished-at="2024-07-18T10:43:58 ADT" duration-ms="2731" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="searchTask_byDescription_shouldReturnMatchingTasks()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:58 ADT" name="searchTask_byDescription_shouldReturnMatchingTasks" finished-at="2024-07-18T10:43:59 ADT" duration-ms="419" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchTask_byDescription_shouldReturnMatchingTasks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:59 ADT" name="tearDown" finished-at="2024-07-18T10:43:59 ADT" duration-ms="260" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:43:59 ADT" name="setUp" finished-at="2024-07-18T10:44:02 ADT" duration-ms="2742" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="searchTask_byDueDate_shouldReturnMatchingTasks()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:02 ADT" name="searchTask_byDueDate_shouldReturnMatchingTasks" finished-at="2024-07-18T10:44:12 ADT" duration-ms="10288" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for com.taskmanagerplus.pages.TaskSearchPage$$Lambda/0x00000000194b4468@1693ff90 (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.22.0', revision: 'c5f3146703*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.128, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Users\maico\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60620}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60620/devtoo..., se:cdpVersion: 126.0.6478.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 0f40098a6e14f0c4e06b1736d8cc1fa9]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for com.taskmanagerplus.pages.TaskSearchPage$$Lambda/0x00000000194b4468@1693ff90 (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.22.0', revision: 'c5f3146703*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.128, chrome: {chromedriverVersion: 126.0.6478.126 (d36ace6122e..., userDataDir: C:\Users\maico\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60620}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60620/devtoo..., se:cdpVersion: 126.0.6478.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 0f40098a6e14f0c4e06b1736d8cc1fa9
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at com.taskmanagerplus.pages.TaskSearchPage.waitForTaskRow(TaskSearchPage.java:164)
-at com.taskmanagerplus.tests.TaskSearchTest.searchTask_byDueDate_shouldReturnMatchingTasks(TaskSearchTest.java:227)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchTask_byDueDate_shouldReturnMatchingTasks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:13 ADT" name="tearDown" finished-at="2024-07-18T10:44:15 ADT" duration-ms="1867" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:15 ADT" name="setUp" finished-at="2024-07-18T10:44:17 ADT" duration-ms="2778" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="searchTask_byTitle_shouldReturnMatchingTasks()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:17 ADT" name="searchTask_byTitle_shouldReturnMatchingTasks" finished-at="2024-07-18T10:44:18 ADT" duration-ms="410" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchTask_byTitle_shouldReturnMatchingTasks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:18 ADT" name="tearDown" finished-at="2024-07-18T10:44:18 ADT" duration-ms="201" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:18 ADT" name="setUp" finished-at="2024-07-18T10:44:21 ADT" duration-ms="2705" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="searchTask_withNonExistentCriteria_shouldDisplayErrorMessage()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:21 ADT" name="searchTask_withNonExistentCriteria_shouldDisplayErrorMessage" finished-at="2024-07-18T10:44:21 ADT" duration-ms="301" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchTask_withNonExistentCriteria_shouldDisplayErrorMessage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:21 ADT" name="tearDown" finished-at="2024-07-18T10:44:21 ADT" duration-ms="260" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:21 ADT" name="setUp" finished-at="2024-07-18T10:44:24 ADT" duration-ms="2748" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="searchTask_withValidTitleAndDescription_shouldReturnCorrectTask()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:24 ADT" name="searchTask_withValidTitleAndDescription_shouldReturnCorrectTask" finished-at="2024-07-18T10:44:24 ADT" duration-ms="367" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchTask_withValidTitleAndDescription_shouldReturnCorrectTask -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:24 ADT" name="tearDown" finished-at="2024-07-18T10:44:25 ADT" duration-ms="257" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:25 ADT" name="setUp" finished-at="2024-07-18T10:44:27 ADT" duration-ms="2709" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="securityTest_preventSQLInjectionAndScriptInjection()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:27 ADT" name="securityTest_preventSQLInjectionAndScriptInjection" finished-at="2024-07-18T10:44:28 ADT" duration-ms="323" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- securityTest_preventSQLInjectionAndScriptInjection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.TaskSearchTest@6e2aa843]" started-at="2024-07-18T10:44:28 ADT" name="tearDown" finished-at="2024-07-18T10:44:28 ADT" duration-ms="305" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- com.taskmanagerplus.tests.TaskSearchTest -->
+      </class> <!-- com.taskmanagerplus.tests.LoginTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
