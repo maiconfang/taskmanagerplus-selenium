@@ -2,64 +2,64 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-07-19T10:39:57 ADT" name="Default suite" finished-at="2024-07-19T10:40:09 ADT" duration-ms="12402">
+  <suite started-at="2024-07-19T10:45:49 ADT" name="Default suite" finished-at="2024-07-19T10:46:03 ADT" duration-ms="13286">
     <groups>
     </groups>
-    <test started-at="2024-07-19T10:39:57 ADT" name="Default test" finished-at="2024-07-19T10:40:09 ADT" duration-ms="12402">
+    <test started-at="2024-07-19T10:45:49 ADT" name="Default test" finished-at="2024-07-19T10:46:03 ADT" duration-ms="13286">
       <class name="com.taskmanagerplus.tests.LoginTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:57 ADT" name="beforeSuite" finished-at="2024-07-19T10:39:57 ADT" duration-ms="262" status="PASS">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:49 ADT" name="beforeSuite" finished-at="2024-07-19T10:45:49 ADT" duration-ms="261" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:57 ADT" name="setUpClass" finished-at="2024-07-19T10:39:58 ADT" duration-ms="692" status="PASS">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:50 ADT" name="setUpClass" finished-at="2024-07-19T10:45:50 ADT" duration-ms="820" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:58 ADT" name="setUp" finished-at="2024-07-19T10:39:59 ADT" duration-ms="1827" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:50 ADT" name="setUp" finished-at="2024-07-19T10:45:52 ADT" duration-ms="1724" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLogin()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:39:59 ADT" name="testLogin" finished-at="2024-07-19T10:40:02 ADT" duration-ms="2637" status="PASS">
+        <test-method signature="testLogin()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:52 ADT" name="testLogin" finished-at="2024-07-19T10:45:54 ADT" duration-ms="2259" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:02 ADT" name="tearDown" finished-at="2024-07-19T10:40:03 ADT" duration-ms="557" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:54 ADT" name="tearDown" finished-at="2024-07-19T10:45:55 ADT" duration-ms="826" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:03 ADT" name="setUp" finished-at="2024-07-19T10:40:03 ADT" duration-ms="877" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:55 ADT" name="setUp" finished-at="2024-07-19T10:45:56 ADT" duration-ms="1151" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLoginWithEmptyCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:03 ADT" name="testLoginWithEmptyCredentials" finished-at="2024-07-19T10:40:04 ADT" duration-ms="966" status="PASS">
+        <test-method signature="testLoginWithEmptyCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:56 ADT" name="testLoginWithEmptyCredentials" finished-at="2024-07-19T10:45:57 ADT" duration-ms="1154" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoginWithEmptyCredentials -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:04 ADT" name="tearDown" finished-at="2024-07-19T10:40:05 ADT" duration-ms="246" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:57 ADT" name="tearDown" finished-at="2024-07-19T10:45:58 ADT" duration-ms="289" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:05 ADT" name="setUp" finished-at="2024-07-19T10:40:06 ADT" duration-ms="889" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:58 ADT" name="setUp" finished-at="2024-07-19T10:45:59 ADT" duration-ms="999" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLoginWithInvalidCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:06 ADT" name="testLoginWithInvalidCredentials" finished-at="2024-07-19T10:40:07 ADT" duration-ms="1499" status="PASS">
+        <test-method signature="testLoginWithInvalidCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:45:59 ADT" name="testLoginWithInvalidCredentials" finished-at="2024-07-19T10:46:00 ADT" duration-ms="1414" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoginWithInvalidCredentials -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:07 ADT" name="tearDown" finished-at="2024-07-19T10:40:07 ADT" duration-ms="231" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:46:00 ADT" name="tearDown" finished-at="2024-07-19T10:46:00 ADT" duration-ms="315" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:07 ADT" name="setUp" finished-at="2024-07-19T10:40:08 ADT" duration-ms="886" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:46:00 ADT" name="setUp" finished-at="2024-07-19T10:46:02 ADT" duration-ms="1002" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testLoginWithShortCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:08 ADT" name="testLoginWithShortCredentials" finished-at="2024-07-19T10:40:09 ADT" duration-ms="848" status="PASS">
+        <test-method signature="testLoginWithShortCredentials()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:46:02 ADT" name="testLoginWithShortCredentials" finished-at="2024-07-19T10:46:02 ADT" duration-ms="997" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLoginWithShortCredentials -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:40:09 ADT" name="tearDown" finished-at="2024-07-19T10:40:09 ADT" duration-ms="192" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.taskmanagerplus.tests.LoginTest@565f390]" started-at="2024-07-19T10:46:03 ADT" name="tearDown" finished-at="2024-07-19T10:46:03 ADT" duration-ms="278" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
