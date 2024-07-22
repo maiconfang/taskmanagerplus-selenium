@@ -3,11 +3,12 @@ package com.taskmanagerplus.tests;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.aventstack.extentreports.Status;
 import com.taskmanagerplus.config.JdbcTemplateSingleton;
@@ -35,17 +36,17 @@ public class TaskRegisterTest extends BaseTest {
     
     private TaskSearchPage taskSearchPage;
     
-    private ExcelUtils excelUtils;
+    private static ExcelUtils excelUtils;
     
 
-    @BeforeClass
-    public void setUpClass() {
+    @BeforeAll
+    public static void setUpClass() {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
 
     }
 
-    @BeforeMethod
+    @BeforeEach
     public void setUp() {
         super.setUp();
 
@@ -70,7 +71,7 @@ public class TaskRegisterTest extends BaseTest {
         taskRegisterPage = new TaskRegisterPage(driver);
     }
 
-    @AfterMethod
+    @AfterEach
     public void tearDown() {
         cleanupTestData();
         logger.info("Test data cleaned up and browser closed");
@@ -110,8 +111,8 @@ public class TaskRegisterTest extends BaseTest {
         // Verify the success message
         NotificationPage notificationPage = new NotificationPage(driver);
         WebElement successMessage = notificationPage.getConfirmRemoveMessage();
-        Assert.assertNotNull(successMessage, "The success message should be displayed after deletion.");
-        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
+        Assertions.assertNotNull(successMessage, "The success message should be displayed after deletion.");
+        Assertions.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
         
         ExtentReportManager.getTest().log(Status.PASS, "Task creation with all fields filled test passed");
         logger.info("Task creation with all fields filled test passed");
@@ -148,8 +149,8 @@ public class TaskRegisterTest extends BaseTest {
         // Verify the success message
         NotificationPage notificationPage = new NotificationPage(driver);
         WebElement successMessage = notificationPage.getConfirmRemoveMessage();
-        Assert.assertNotNull(successMessage, "The success message should be displayed after deletion.");
-        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
+        Assertions.assertNotNull(successMessage, "The success message should be displayed after deletion.");
+        Assertions.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task creation with mandatory fields only test passed");
     }
@@ -171,7 +172,7 @@ public class TaskRegisterTest extends BaseTest {
 
         taskRegisterPage.clickBackButton();
 
-        Assert.assertTrue(driver.getCurrentUrl().contains("/task"), "The current URL should contain '/task/search'.");
+        Assertions.assertTrue(driver.getCurrentUrl().contains("/task"), "The current URL should contain '/task/search'.");
         ExtentReportManager.getTest().log(Status.PASS, "Back button navigation test passed");
     }
     
@@ -196,12 +197,12 @@ public class TaskRegisterTest extends BaseTest {
         // Set the completed checkbox to true
         taskRegisterPage.setCompleted(true);
         // Verify that the completed checkbox is checked
-        Assert.assertTrue(taskRegisterPage.isCompletedChecked(), "The completed checkbox should be checked.");
+        Assertions.assertTrue(taskRegisterPage.isCompletedChecked(), "The completed checkbox should be checked.");
 
         // Set the completed checkbox to false
         taskRegisterPage.setCompleted(false);
         // Verify that the completed checkbox is unchecked
-        Assert.assertFalse(taskRegisterPage.isCompletedChecked(), "The completed checkbox should be unchecked.");
+        Assertions.assertFalse(taskRegisterPage.isCompletedChecked(), "The completed checkbox should be unchecked.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Completed checkbox toggle test passed");
     }
@@ -252,8 +253,8 @@ public class TaskRegisterTest extends BaseTest {
         
         NotificationPage notificationPage = new NotificationPage(driver);
         WebElement successMessage = notificationPage.getConfirmRemoveMessage();
-        Assert.assertNotNull(successMessage, "The success message should be displayed after task creation.");
-        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
+        Assertions.assertNotNull(successMessage, "The success message should be displayed after task creation.");
+        Assertions.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Created", "The success message should indicate that the task was created.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task creation test passed");
         logger.info("Task creation test passed");
@@ -264,19 +265,19 @@ public class TaskRegisterTest extends BaseTest {
         taskSearchPage.clickSearchButton();
 
         WebElement taskRow = taskSearchPage.waitForTaskRow(taskTitle, wait);
-        Assert.assertNotNull(taskRow, "The created task should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "The created task should be present in the search results.");
         
         String description = taskSearchPage.getTaskDescription(taskRow);
-        Assert.assertEquals(description, taskDescription, "The description should match.");
+        Assertions.assertEquals(description, taskDescription, "The description should match.");
 
         String dueDate = taskSearchPage.getTaskDueDate(taskRow);
-        Assert.assertEquals(dueDate, taskDueDate, "The due date should match.");
+        Assertions.assertEquals(dueDate, taskDueDate, "The due date should match.");
 
         String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
-        Assert.assertEquals(completed, "No", "The task should not be completed.");
+        Assertions.assertEquals(completed, "No", "The task should not be completed.");
 
-        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
-        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task verification test passed");
         logger.info("Task verification test passed");

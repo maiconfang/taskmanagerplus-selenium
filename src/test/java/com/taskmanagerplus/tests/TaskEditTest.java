@@ -3,11 +3,12 @@ package com.taskmanagerplus.tests;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 import com.aventstack.extentreports.Status;
 import com.taskmanagerplus.config.JdbcTemplateSingleton;
@@ -31,16 +32,16 @@ public class TaskEditTest extends BaseTest {
 
     private TaskRegisterPage taskRegisterPage;
     private TaskSearchPage taskSearchPage;
-    private ExcelUtils excelUtils;
+    private static ExcelUtils excelUtils;
     private static final Logger logger = LoggerFactory.getLogger(TaskEditTest.class);
 
-    @BeforeClass
-    public void setUpClass() {
+    @BeforeAll
+    public static void setUpClass() {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
     }
 
-    @BeforeMethod
+    @BeforeEach
     public void setUp() {
         super.setUp();
 
@@ -63,7 +64,7 @@ public class TaskEditTest extends BaseTest {
         taskSearchPage.enterTitle("Test Task A");
         taskSearchPage.clickSearchButton();
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
-        Assert.assertNotNull(taskRow, "The task to edit should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "The task to edit should be present in the search results.");
 
         // Click the edit icon for the task
         taskSearchPage.clickEditButtonForTask("Test Task A");
@@ -74,7 +75,7 @@ public class TaskEditTest extends BaseTest {
         taskRegisterPage = new TaskRegisterPage(driver);
     }
 
-    @AfterMethod
+    @AfterEach
     public void tearDown() {
         cleanupTestData();
         logger.info("Test data cleaned up and browser closed");
@@ -135,8 +136,8 @@ public class TaskEditTest extends BaseTest {
 
         NotificationPage notificationPage = new NotificationPage(driver);
         WebElement successMessage = notificationPage.getConfirmRemoveMessage();
-        Assert.assertNotNull(successMessage, "The success message should be displayed after task update.");
-        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Updated", "The success message should indicate that the task was updated.");
+        Assertions.assertNotNull(successMessage, "The success message should be displayed after task update.");
+        Assertions.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Updated", "The success message should indicate that the task was updated.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task update test passed");
         logger.info("Task update test passed");
@@ -147,19 +148,19 @@ public class TaskEditTest extends BaseTest {
         taskSearchPage.clickSearchButton();
 
         WebElement taskRow = taskSearchPage.waitForTaskRow(newTaskTitle, wait);
-        Assert.assertNotNull(taskRow, "The updated task should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "The updated task should be present in the search results.");
 
         String description = taskSearchPage.getTaskDescription(taskRow);
-        Assert.assertEquals(description, newTaskDescription, "The description should match.");
+        Assertions.assertEquals(description, newTaskDescription, "The description should match.");
 
         String dueDate = taskSearchPage.getTaskDueDate(taskRow);
-        Assert.assertEquals(dueDate, newTaskDueDate, "The due date should match.");
+        Assertions.assertEquals(dueDate, newTaskDueDate, "The due date should match.");
 
         String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
-        Assert.assertEquals(completed, "Yes", "The task should be completed.");
+        Assertions.assertEquals(completed, "Yes", "The task should be completed.");
 
-        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
-        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task verification test passed");
         logger.info("Task verification test passed");

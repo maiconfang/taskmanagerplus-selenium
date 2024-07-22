@@ -1,10 +1,10 @@
 package com.taskmanagerplus.tests;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import com.taskmanagerplus.pages.InitialPage;
 import com.taskmanagerplus.pages.LoginPage;
@@ -44,10 +44,10 @@ import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
-    private ExcelUtils excelUtils;
+    private static ExcelUtils excelUtils;
 
-    @BeforeClass
-    public void setUpClass() {
+    @BeforeAll
+    public static void setUpClass() {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
         System.out.println("ExcelUtils initialized with file: testdata/LoginCredentials.xlsx");
@@ -112,15 +112,15 @@ public class LoginTest extends BaseTest {
         String actualUrl = driver.getCurrentUrl();
 
         ExtentReportManager.getTest().log(Status.INFO, "Verifying the login was successful");
-        Assert.assertEquals(actualUrl, expectedUrl, "The login was not successful.");
+        Assertions.assertEquals(expectedUrl, actualUrl, "The login was not successful.");
 
         // Additional check: Verify if the specific elements unique to the dashboard are present
         DashboardPage dashboardPage = new DashboardPage(driver);
         ExtentReportManager.getTest().log(Status.INFO, "Verifying presence of user link on the dashboard");
-        Assert.assertTrue(dashboardPage.isUserLinkPresent(), "The user link on the dashboard was not found.");
+        Assertions.assertTrue(dashboardPage.isUserLinkPresent(), "The user link on the dashboard was not found.");
 
         ExtentReportManager.getTest().log(Status.INFO, "Verifying presence of logout button on the dashboard");
-        Assert.assertTrue(dashboardPage.isLogoutButtonPresent(), "The logout button on the dashboard was not found.");
+        Assertions.assertTrue(dashboardPage.isLogoutButtonPresent(), "The logout button on the dashboard was not found.");
     }
     
     
@@ -157,7 +157,7 @@ public class LoginTest extends BaseTest {
 
         // Verify the error message is displayed
         ExtentReportManager.getTest().log(Status.INFO, "Verifying error message is displayed");
-        Assert.assertTrue(loginPage.isErrorMessageDisplayed(), "The error message was not displayed for invalid credentials.");
+        Assertions.assertTrue(loginPage.isErrorMessageDisplayed(), "The error message was not displayed for invalid credentials.");
     }
     
     /**
@@ -190,7 +190,7 @@ public class LoginTest extends BaseTest {
 
         // Verify the login button is disabled
         ExtentReportManager.getTest().log(Status.INFO, "Verifying the login button is disabled");
-        Assert.assertFalse(loginPage.isLoginButtonEnabled(), "The login button should be disabled for invalid credentials.");
+        Assertions.assertFalse(loginPage.isLoginButtonEnabled(), "The login button should be disabled for invalid credentials.");
 
 
         // Explicit wait to ensure the error messages are displayed
@@ -201,10 +201,10 @@ public class LoginTest extends BaseTest {
 
         // Verify the error messages are displayed
         ExtentReportManager.getTest().log(Status.INFO, "Verifying login error message is displayed");
-        Assert.assertTrue(loginPage.isLoginErrorMessageDisplayed(), "The login error message was not displayed.");
+        Assertions.assertTrue(loginPage.isLoginErrorMessageDisplayed(), "The login error message was not displayed.");
 
         ExtentReportManager.getTest().log(Status.INFO, "Verifying password error message is displayed");
-        Assert.assertTrue(loginPage.isPasswordErrorMessageDisplayed(), "The password error message was not displayed.");
+        Assertions.assertTrue(loginPage.isPasswordErrorMessageDisplayed(), "The password error message was not displayed.");
     }
     
     /**
@@ -235,7 +235,7 @@ public class LoginTest extends BaseTest {
 
         // Verify the login button is disabled
         ExtentReportManager.getTest().log(Status.INFO, "Verifying the login button is disabled");
-        Assert.assertFalse(loginPage.isLoginButtonEnabled(), "The login button should be disabled for short credentials.");
+        Assertions.assertFalse(loginPage.isLoginButtonEnabled(), "The login button should be disabled for short credentials.");
 
         // Explicit wait to ensure the error messages are displayed
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -245,10 +245,10 @@ public class LoginTest extends BaseTest {
 
         // Verify the error messages are displayed
         ExtentReportManager.getTest().log(Status.INFO, "Verifying login error message is displayed");
-        Assert.assertTrue(loginPage.isLoginErrorMessageDisplayed(), "The login error message was not displayed.");
+        Assertions.assertTrue(loginPage.isLoginErrorMessageDisplayed(), "The login error message was not displayed.");
 
         ExtentReportManager.getTest().log(Status.INFO, "Verifying password error message is displayed");
-        Assert.assertTrue(loginPage.isPasswordErrorMessageDisplayed(), "The password error message was not displayed.");
+        Assertions.assertTrue(loginPage.isPasswordErrorMessageDisplayed(), "The password error message was not displayed.");
     }
     
 }

@@ -5,11 +5,12 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.aventstack.extentreports.Status;
 import com.taskmanagerplus.config.JdbcTemplateSingleton;
@@ -32,20 +33,20 @@ import com.taskmanagerplus.utils.ExcelUtils;
 
 public class TaskSearchTest extends BaseTest {
 
-    private ExcelUtils excelUtils;
+    private static ExcelUtils excelUtils;
     
     private TaskSearchPage taskSearchPage;
     
     private static final Logger logger = LoggerFactory.getLogger(TaskSearchTest.class);
 
-    @BeforeClass
-    public void setUpClass() {
+    @BeforeAll
+    public static void setUpClass() {
         // Initialize ExcelUtils with the path to the LoginCredentials.xlsx file
         excelUtils = new ExcelUtils("testdata/LoginCredentials.xlsx");
         
     }
 
-    @BeforeMethod
+    @BeforeEach
     public void setUp() {
         super.setUp();
         
@@ -60,7 +61,7 @@ public class TaskSearchTest extends BaseTest {
         logger.info("Performed login and navigated to Task Search Page");
     }
 
-    @AfterMethod
+    @AfterEach
     public void tearDown() {
         cleanupTestData();
         logger.info("Test data cleaned up and browser closed");
@@ -104,7 +105,7 @@ public class TaskSearchTest extends BaseTest {
 
         // Add assertions to verify the search results
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
-        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "Test Task A should be present in the search results.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task search test passed");
         logger.info("Task search test passed");
@@ -137,23 +138,23 @@ public class TaskSearchTest extends BaseTest {
         taskSearchPage.clickSearchButton();
 
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
-        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "Test Task A should be present in the search results.");
         
         // Validate Description
         String description = taskSearchPage.getTaskDescription(taskRow);
-        Assert.assertEquals(description, "Test Description A", "The description should match 'Test Description A'.");
+        Assertions.assertEquals(description, "Test Description A", "The description should match 'Test Description A'.");
 
         // Validate Due Date
         String dueDate = taskSearchPage.getTaskDueDate(taskRow);
-        Assert.assertEquals(dueDate, "2024-07-15", "The due date should match '2024-07-15'.");
+        Assertions.assertEquals(dueDate, "2024-07-15", "The due date should match '2024-07-15'.");
 
         // Validate Completed Status
         String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
-        Assert.assertEquals(completed, "No", "The task should not be completed.");
+        Assertions.assertEquals(completed, "No", "The task should not be completed.");
 
         // Validate Actions
-        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
-        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task search by title test passed");
         logger.info("Task search by title test passed");
@@ -179,23 +180,23 @@ public class TaskSearchTest extends BaseTest {
         taskSearchPage.clickSearchButton();
 
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
-        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "Test Task A should be present in the search results.");
         
         // Validate Title
         String title = taskSearchPage.getTaskTitle(taskRow);
-        Assert.assertEquals(title, "Test Task A", "The title should match 'Test Task A'.");
+        Assertions.assertEquals(title, "Test Task A", "The title should match 'Test Task A'.");
 
         // Validate Due Date
         String dueDate = taskSearchPage.getTaskDueDate(taskRow);
-        Assert.assertEquals(dueDate, "2024-07-15", "The due date should match '2024-07-15'.");
+        Assertions.assertEquals(dueDate, "2024-07-15", "The due date should match '2024-07-15'.");
 
         // Validate Completed Status
         String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
-        Assert.assertEquals(completed, "No", "The task should not be completed.");
+        Assertions.assertEquals(completed, "No", "The task should not be completed.");
 
         // Validate Actions
-        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
-        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task search by description test passed");
         logger.info("Task search by description test passed");
@@ -225,23 +226,23 @@ public class TaskSearchTest extends BaseTest {
         taskSearchPage.clickSearchButton();
 
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task A", wait);
-        Assert.assertNotNull(taskRow, "Test Task A should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "Test Task A should be present in the search results.");
         
         // Validate Title
         String title = taskSearchPage.getTaskTitle(taskRow);
-        Assert.assertEquals(title, "Test Task A", "The title should match 'Test Task A'.");
+        Assertions.assertEquals(title, "Test Task A", "The title should match 'Test Task A'.");
 
         // Validate Description
         String description = taskSearchPage.getTaskDescription(taskRow);
-        Assert.assertEquals(description, "Test Description A", "The description should match 'Test Description A'.");
+        Assertions.assertEquals(description, "Test Description A", "The description should match 'Test Description A'.");
 
         // Validate Completed Status
         String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
-        Assert.assertEquals(completed, "No", "The task should not be completed.");
+        Assertions.assertEquals(completed, "No", "The task should not be completed.");
 
         // Validate Actions
-        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
-        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task search by due date test passed");
         logger.info("Task search by due date test passed");
@@ -269,23 +270,23 @@ public class TaskSearchTest extends BaseTest {
         for (WebElement task : completedTasks) {
             // Validate Title
             String title = taskSearchPage.getTaskTitle(task);
-            Assert.assertTrue(title.startsWith("Test Task"), "The title should start with 'Test Task'.");
+            Assertions.assertTrue(title.startsWith("Test Task"), "The title should start with 'Test Task'.");
 
             // Validate Description
             String description = taskSearchPage.getTaskDescription(task);
-            Assert.assertTrue(description.startsWith("Test Description"), "The description should start with 'Test Description'.");
+            Assertions.assertTrue(description.startsWith("Test Description"), "The description should start with 'Test Description'.");
 
             // Validate Due Date
             String dueDate = taskSearchPage.getTaskDueDate(task);
-            Assert.assertNotNull(dueDate, "The due date should not be null.");
+            Assertions.assertNotNull(dueDate, "The due date should not be null.");
 
             // Validate Completed Status
             String completed = taskSearchPage.getTaskCompletedStatus(task);
-            Assert.assertEquals(completed, "Yes", "The task should be completed.");
+            Assertions.assertEquals(completed, "Yes", "The task should be completed.");
 
             // Validate Actions
-            Assert.assertTrue(taskSearchPage.hasEditButton(task), "The edit button should be present.");
-            Assert.assertTrue(taskSearchPage.hasDeleteButton(task), "The delete button should be present.");
+            Assertions.assertTrue(taskSearchPage.hasEditButton(task), "The edit button should be present.");
+            Assertions.assertTrue(taskSearchPage.hasDeleteButton(task), "The delete button should be present.");
         }
 
         ExtentReportManager.getTest().log(Status.PASS, "Task filter by completed status test passed");
@@ -307,7 +308,7 @@ public class TaskSearchTest extends BaseTest {
         
         taskSearchPage.clickCreateTaskButton();
         
-        Assert.assertTrue(driver.getCurrentUrl().contains("/task/new"), "Should navigate to the create task page.");
+        Assertions.assertTrue(driver.getCurrentUrl().contains("/task/new"), "Should navigate to the create task page.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Create new task navigation test passed");
         logger.info("Create new task navigation test passed");
@@ -334,23 +335,23 @@ public class TaskSearchTest extends BaseTest {
 
         // Verify the search results
         WebElement taskRow = taskSearchPage.waitForTaskRow("Test Task C", wait);
-        Assert.assertNotNull(taskRow, "Test Task C should be present in the search results.");
+        Assertions.assertNotNull(taskRow, "Test Task C should be present in the search results.");
         
         // Validate Description
         String description = taskSearchPage.getTaskDescription(taskRow);
-        Assert.assertEquals(description, "Test Description C", "The description should match 'Test Description C'.");
+        Assertions.assertEquals(description, "Test Description C", "The description should match 'Test Description C'.");
 
         // Validate Due Date
         String dueDate = taskSearchPage.getTaskDueDate(taskRow);
-        Assert.assertEquals(dueDate, "2023-12-31", "The due date should match '2023-12-31'.");
+        Assertions.assertEquals(dueDate, "2023-12-31", "The due date should match '2023-12-31'.");
 
         // Validate Completed Status
         String completed = taskSearchPage.getTaskCompletedStatus(taskRow);
-        Assert.assertEquals(completed, "Yes", "The task should be completed.");
+        Assertions.assertEquals(completed, "Yes", "The task should be completed.");
 
         // Validate Actions
-        Assert.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
-        Assert.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasEditButton(taskRow), "The edit button should be present.");
+        Assertions.assertTrue(taskSearchPage.hasDeleteButton(taskRow), "The delete button should be present.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task filter by title, description, and completed status test passed");
         logger.info("Task filter by title, description, and completed status test passed");
@@ -371,8 +372,8 @@ public class TaskSearchTest extends BaseTest {
 
         // Verify that the error message is displayed
         WebElement errorMessage = taskSearchPage.getErrorMessage();
-        Assert.assertNotNull(errorMessage, "Error message should be displayed when no results are found.");
-        Assert.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
+        Assertions.assertNotNull(errorMessage, "Error message should be displayed when no results are found.");
+        Assertions.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Error message validation test passed");
         logger.info("Error message validation test passed");
@@ -397,16 +398,16 @@ public class TaskSearchTest extends BaseTest {
 
         // Verify the first task on the second page
         WebElement firstTaskOnSecondPage = taskSearchPage.getFirstTaskOnCurrentPage();
-        Assert.assertNotNull(firstTaskOnSecondPage, "There should be a task displayed on the second page.");
-        Assert.assertTrue(firstTaskOnSecondPage.getText().contains("Test Task A"), "The first task on the first page should be a task from the inserted test data.");
+        Assertions.assertNotNull(firstTaskOnSecondPage, "There should be a task displayed on the second page.");
+        Assertions.assertTrue(firstTaskOnSecondPage.getText().contains("Test Task A"), "The first task on the first page should be a task from the inserted test data.");
 
         // Navigate to the second page
         taskSearchPage.clickPaginationNext();
         
         // Verify the first task on the first page
         WebElement firstTaskOnFirstPage = taskSearchPage.getFirstTaskOnCurrentPage();
-        Assert.assertNotNull(firstTaskOnFirstPage, "There should be a task displayed on the first page.");
-        Assert.assertTrue(firstTaskOnFirstPage.getText().contains("Test Task K"), "The first task on the second page should be a task from the inserted test data.");
+        Assertions.assertNotNull(firstTaskOnFirstPage, "There should be a task displayed on the first page.");
+        Assertions.assertTrue(firstTaskOnFirstPage.getText().contains("Test Task K"), "The first task on the second page should be a task from the inserted test data.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Pagination functionality test passed");
         logger.info("Pagination functionality test passed");
@@ -427,8 +428,8 @@ public class TaskSearchTest extends BaseTest {
 
         // Verify no malicious actions are executed and proper error handling occurs
         WebElement errorMessage = taskSearchPage.getErrorMessage();
-        Assert.assertNotNull(errorMessage, "Error message should be displayed when SQL injection attempt is made.");
-        Assert.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
+        Assertions.assertNotNull(errorMessage, "Error message should be displayed when SQL injection attempt is made.");
+        Assertions.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
 
         // Attempt script injection in the description field
         taskSearchPage.enterDescription("<script>alert('XSS');</script>");
@@ -436,8 +437,8 @@ public class TaskSearchTest extends BaseTest {
 
         // Verify the script is not executed and proper error handling occurs
         errorMessage = taskSearchPage.getErrorMessage();
-        Assert.assertNotNull(errorMessage, "Error message should be displayed when script injection attempt is made.");
-        Assert.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
+        Assertions.assertNotNull(errorMessage, "Error message should be displayed when script injection attempt is made.");
+        Assertions.assertEquals(errorMessage.getText(), "No records found", "The error message should indicate that no results were found.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Security test for SQL and script injection passed");
         logger.info("Security test for SQL and script injection passed");
@@ -471,8 +472,8 @@ public class TaskSearchTest extends BaseTest {
 
         // Verify the success message
         WebElement successMessage = taskSearchPage.getConfirmRemoveMessage();
-        Assert.assertNotNull(successMessage, "The success message should be displayed after deletion.");
-        Assert.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Removed", "The success message should indicate that the task was removed.");
+        Assertions.assertNotNull(successMessage, "The success message should be displayed after deletion.");
+        Assertions.assertEquals(successMessage.getText().replace("×", "").trim(), "Successfully Removed", "The success message should indicate that the task was removed.");
 
         // Search again to ensure the task is no longer present
         taskSearchPage.enterTitle("Test Task A");
@@ -480,7 +481,7 @@ public class TaskSearchTest extends BaseTest {
         
         // Verify that the No records found is displayed
         WebElement errorMessage = taskSearchPage.getErrorMessage();
-        Assert.assertEquals(errorMessage.getText(), "No records found", "Test Task A should not be present in the search results after deletion.");
+        Assertions.assertEquals(errorMessage.getText(), "No records found", "Test Task A should not be present in the search results after deletion.");
 
         ExtentReportManager.getTest().log(Status.PASS, "Task deletion test passed");
         logger.info("Task deletion test passed");

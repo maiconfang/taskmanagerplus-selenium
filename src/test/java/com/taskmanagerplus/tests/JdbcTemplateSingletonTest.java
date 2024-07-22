@@ -1,14 +1,14 @@
 package com.taskmanagerplus.tests;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
-import com.taskmanagerplus.config.JdbcTemplateSingleton;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.taskmanagerplus.config.JdbcTemplateSingleton;
 
 /**
  * Test class for verifying the functionality of the JdbcTemplateSingleton in the Task Manager Plus application.
@@ -22,16 +22,16 @@ import org.slf4j.LoggerFactory;
  */
 public class JdbcTemplateSingletonTest {
 
-    private JdbcTemplate jdbcTemplate;
+    private static JdbcTemplate jdbcTemplate;
     private static final Logger logger = LoggerFactory.getLogger(JdbcTemplateSingletonTest.class);
 
-    @BeforeClass
-    public void setUpClass() {
+    @BeforeAll
+    public static void setUpClass() {
         // Get the singleton instance of JdbcTemplate
         jdbcTemplate = JdbcTemplateSingleton.getInstance();
     }
     
-    @AfterMethod
+    @AfterEach
     public void tearDown() {
     	JdbcTemplateSingleton.cleanupTestDataTask("Test Task");
         logger.info("Test data cleaned up");
@@ -45,7 +45,7 @@ public class JdbcTemplateSingletonTest {
      */
     @Test
     public void testJdbcTemplateInitialization() {
-        Assert.assertNotNull(jdbcTemplate, "JdbcTemplate should be initialized");
+        Assertions.assertNotNull(jdbcTemplate, "JdbcTemplate should be initialized");
         logger.info("JdbcTemplate initialization test passed");
     }
 
@@ -70,7 +70,7 @@ public class JdbcTemplateSingletonTest {
 
         // Verify the data insertion
         int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM task WHERE title = 'Test Task Insert'", Integer.class);
-        Assert.assertEquals(count, 1, "One test task should be inserted.");
+        Assertions.assertEquals(count, 1, "One test task should be inserted.");
         logger.info("Test data insertion verified");
 
         // Cleanup test data
@@ -78,7 +78,7 @@ public class JdbcTemplateSingletonTest {
 
         // Verify the data cleanup
         count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM task WHERE title = 'Test Task Insert'", Integer.class);
-        Assert.assertEquals(count, 0, "Test task should be cleaned up.");
+        Assertions.assertEquals(count, 0, "Test task should be cleaned up.");
         logger.info("Test data cleanup verified");
     }
 }
