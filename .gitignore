@@ -35,10 +35,8 @@ build/
 # Ignore generated test reports
 test-output/
 
-# Ignore test-output files and directories
-test-output*
-
 # Ignore reports from specific tools
+test-output*
 emailable-report.html
 ExtentReport.html
 
@@ -52,4 +50,8 @@ config.properties
 .DS_Store
 Thumbs.db
 
+# Ignore Allure directory
+.allure/
 
+# Ignore Maven status files
+target/maven-status/
