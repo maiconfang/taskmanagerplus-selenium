@@ -2,6 +2,9 @@ package com.taskmanagerplus.tests;
 
 import java.util.List;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,8 @@ import com.taskmanagerplus.pages.DeleteConfirmationPage;
 import com.taskmanagerplus.pages.TaskSearchPage;
 import com.taskmanagerplus.reports.ExtentReportManager;
 import com.taskmanagerplus.utils.ExcelUtils;
+
+import io.qameta.allure.Attachment;
 
 /**
  * Test class for the task search functionality in the Task Manager Plus application.
@@ -63,10 +68,23 @@ public class TaskSearchTest extends BaseTest {
 
     @AfterEach
     public void tearDown() {
+        if (driver != null) {
+            saveScreenshotPNG(driver);
+            savePageSource(driver);
+        }
         cleanupTestData();
         logger.info("Test data cleaned up and browser closed");
     }
 
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshotPNG(WebDriver driver) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @Attachment(value = "Page source", type = "text/html")
+    public String savePageSource(WebDriver driver) {
+        return driver.getPageSource();
+    }
     
     private void cleanupTestData() {
         JdbcTemplateSingleton.cleanupTestDataTask("Test Task");

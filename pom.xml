@@ -31,6 +31,7 @@
 			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- JUnit 5 Engine -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -38,6 +39,7 @@
 			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- JUnit 5 Platform Launcher -->
 		<dependency>
 			<groupId>org.junit.platform</groupId>
@@ -68,16 +70,19 @@
 			<artifactId>poi</artifactId>
 			<version>5.3.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.3.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
 			<version>4.1.2</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>
 			<artifactId>xmlbeans</artifactId>
